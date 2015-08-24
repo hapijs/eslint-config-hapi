@@ -1,0 +1,132 @@
+'use strict';
+var Fs = require('fs');
+var Path = require('path');
+var Code = require('code');
+var ESLint = require('eslint');
+var Lab = require('lab');
+var Config = require('../lib');
+var CLIEngine = ESLint.CLIEngine;
+
+// Test shortcuts
+var lab = exports.lab = Lab.script();
+var expect = Code.expect;
+var describe = lab.describe;
+var it = lab.it;
+
+Code.settings.truncateMessages = false;
+
+function lintFile(file) {
+  var cli = new CLIEngine({
+    useEslintrc: false,
+    baseConfig: Config
+  });
+  var data = Fs.readFileSync(Path.join(__dirname, file), 'utf8');
+
+  return cli.executeOnText(data);
+}
+
+describe('eslint-config-hapi', function () {
+  it('enforces four space indentation', function (done) {
+    var output = lintFile('fixtures/indent.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(1);
+    expect(output.warningCount).to.equal(0);
+    expect(results.errorCount).to.equal(1);
+    expect(results.warningCount).to.equal(0);
+    expect(results.messages).to.deep.equal([{
+      ruleId: 'indent',
+      severity: 2,
+      message: 'Expected indentation of 4 space characters but found 2.',
+      line: 3,
+      column: 3,
+      nodeType: 'ReturnStatement',
+      source: '  return value + 1;'
+    }]);
+    done();
+  });
+
+  it('enforces semicolon usage', function (done) {
+    var output = lintFile('fixtures/semi.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(1);
+    expect(output.warningCount).to.equal(0);
+    expect(results.errorCount).to.equal(1);
+    expect(results.warningCount).to.equal(0);
+    expect(results.messages).to.deep.equal([{
+      ruleId: 'semi',
+      severity: 2,
+      message: 'Missing semicolon.',
+      line: 3,
+      column: 14,
+      nodeType: 'ReturnStatement',
+      source: '    return 42'
+    }]);
+    done();
+  });
+
+  it('enforces hapi/hapi-scope-start', function (done) {
+    var output = lintFile('fixtures/hapi-scope-start.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(0);
+    expect(output.warningCount).to.equal(1);
+    expect(results.errorCount).to.equal(0);
+    expect(results.warningCount).to.equal(1);
+    expect(results.messages).to.deep.equal([{
+      ruleId: 'hapi/hapi-scope-start',
+      severity: 1,
+      message: 'Missing blank line at beginning of function.',
+      line: 1,
+      column: 11,
+      nodeType: 'FunctionExpression',
+      source: 'var foo = function () {'
+    }]);
+    done();
+  });
+
+  it('enforces hapi/no-shadow-relaxed', function (done) {
+    var output = lintFile('fixtures/no-shadow-relaxed.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(0);
+    expect(output.warningCount).to.equal(1);
+    expect(results.errorCount).to.equal(0);
+    expect(results.warningCount).to.equal(1);
+    expect(results.messages).to.deep.equal([{
+      ruleId: 'hapi/no-shadow-relaxed',
+      severity: 1,
+      message: 'res is already declared in the upper scope.',
+      line: 27,
+      column: 31,
+      nodeType: 'Identifier',
+      source: '        var inner = function (res) {'
+    }]);
+    done();
+  });
+
+  it('uses the node environment', function (done) {
+    var output = lintFile('fixtures/node-env.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(0);
+    expect(output.warningCount).to.equal(0);
+    expect(results.errorCount).to.equal(0);
+    expect(results.warningCount).to.equal(0);
+    expect(results.messages).to.deep.equal([]);
+    done();
+  });
+
+  it('uses the ES6 environment', function (done) {
+    var output = lintFile('fixtures/es6-env.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(0);
+    expect(output.warningCount).to.equal(0);
+    expect(results.errorCount).to.equal(0);
+    expect(results.warningCount).to.equal(0);
+    expect(results.messages).to.deep.equal([]);
+    done();
+  });
+});
