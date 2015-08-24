@@ -15,14 +15,24 @@ var it = lab.it;
 
 Code.settings.truncateMessages = false;
 
-function lintFile(file) {
-  var cli = new CLIEngine({
+function getLinter() {
+  return new CLIEngine({
     useEslintrc: false,
     baseConfig: Config
   });
+}
+
+function lintFile(file) {
+  var cli = getLinter();
   var data = Fs.readFileSync(Path.join(__dirname, file), 'utf8');
 
   return cli.executeOnText(data);
+}
+
+function lintString(str) {
+  var cli = getLinter();
+
+  return cli.executeOnText(str);
 }
 
 describe('eslint-config-hapi', function () {
@@ -119,7 +129,8 @@ describe('eslint-config-hapi', function () {
   });
 
   it('uses the ES6 environment', function (done) {
-    var output = lintFile('fixtures/es6-env.js');
+    // Do this as a string to prevent problems during testing on old versions of Node
+    var output = lintString('module.exports = `__filename = ${__filename}`;\n');
     var results = output.results[0];
 
     expect(output.errorCount).to.equal(0);
