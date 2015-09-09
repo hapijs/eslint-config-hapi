@@ -56,6 +56,64 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
+  it('enforces case indentation in switch statements', function (done) {
+    var output = lintFile('fixtures/indent-switch-case.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(5);
+    expect(output.warningCount).to.equal(0);
+    expect(results.errorCount).to.equal(5);
+    expect(results.warningCount).to.equal(0);
+    expect(results.messages).to.deep.equal([
+      {
+        ruleId: 'indent',
+        severity: 2,
+        message: 'Expected indentation of 4 space characters but found 0.',
+        line: 9,
+        column: 1,
+        nodeType: 'SwitchCase',
+        source: 'case \'bar\':'
+      },
+      {
+        ruleId: 'indent',
+        severity: 2,
+        message: 'Expected indentation of 8 space characters but found 4.',
+        line: 10,
+        column: 5,
+        nodeType: 'ExpressionStatement',
+        source: '    result = 2;'
+      },
+      {
+        ruleId: 'indent',
+        severity: 2,
+        message: 'Expected indentation of 8 space characters but found 4.',
+        line: 11,
+        column: 5,
+        nodeType: 'BreakStatement',
+        source: '    break;'
+      },
+      {
+        ruleId: 'indent',
+        severity: 2,
+        message: 'Expected indentation of 8 space characters but found 4.',
+        line: 13,
+        column: 5,
+        nodeType: 'ExpressionStatement',
+        source: '    result = 3;'
+      },
+      {
+        ruleId: 'indent',
+        severity: 2,
+        message: 'Expected indentation of 8 space characters but found 4.',
+        line: 14,
+        column: 5,
+        nodeType: 'BreakStatement',
+        source: '    break;'
+      }
+    ]);
+    done();
+  });
+
   it('enforces semicolon usage', function (done) {
     var output = lintFile('fixtures/semi.js');
     var results = output.results[0];
