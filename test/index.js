@@ -198,4 +198,16 @@ describe('eslint-config-hapi', function () {
     expect(results.messages).to.deep.equal([]);
     done();
   });
+
+  it('does not enforce the camelcase lint rule', function (done) {
+    var output = lintFile('fixtures/camelcase.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(0);
+    expect(output.warningCount).to.equal(0);
+    expect(results.errorCount).to.equal(0);
+    expect(results.warningCount).to.equal(0);
+    expect(results.messages).to.deep.equal([]);
+    done();
+  });
 });
