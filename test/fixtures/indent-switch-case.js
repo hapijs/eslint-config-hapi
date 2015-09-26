@@ -13,3 +13,5 @@ case 'bar':
     result = 3;
     break;
 }
+
+return result;

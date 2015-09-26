@@ -44,15 +44,16 @@ describe('eslint-config-hapi', function () {
     expect(output.warningCount).to.equal(0);
     expect(results.errorCount).to.equal(1);
     expect(results.warningCount).to.equal(0);
-    expect(results.messages).to.deep.equal([{
-      ruleId: 'indent',
-      severity: 2,
-      message: 'Expected indentation of 4 space characters but found 2.',
-      line: 3,
-      column: 3,
-      nodeType: 'ReturnStatement',
-      source: '  return value + 1;'
-    }]);
+
+    var msg = results.messages[0];
+
+    expect(msg.ruleId).to.equal('indent');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Expected indentation of 4 space characters but found 2.');
+    expect(msg.line).to.equal(3);
+    expect(msg.column).to.equal(3);
+    expect(msg.nodeType).to.equal('ReturnStatement');
+    expect(msg.source).to.equal('  return value + 1;');
     done();
   });
 
@@ -64,53 +65,57 @@ describe('eslint-config-hapi', function () {
     expect(output.warningCount).to.equal(0);
     expect(results.errorCount).to.equal(5);
     expect(results.warningCount).to.equal(0);
-    expect(results.messages).to.deep.equal([
-      {
-        ruleId: 'indent',
-        severity: 2,
-        message: 'Expected indentation of 4 space characters but found 0.',
-        line: 9,
-        column: 1,
-        nodeType: 'SwitchCase',
-        source: 'case \'bar\':'
-      },
-      {
-        ruleId: 'indent',
-        severity: 2,
-        message: 'Expected indentation of 8 space characters but found 4.',
-        line: 10,
-        column: 5,
-        nodeType: 'ExpressionStatement',
-        source: '    result = 2;'
-      },
-      {
-        ruleId: 'indent',
-        severity: 2,
-        message: 'Expected indentation of 8 space characters but found 4.',
-        line: 11,
-        column: 5,
-        nodeType: 'BreakStatement',
-        source: '    break;'
-      },
-      {
-        ruleId: 'indent',
-        severity: 2,
-        message: 'Expected indentation of 8 space characters but found 4.',
-        line: 13,
-        column: 5,
-        nodeType: 'ExpressionStatement',
-        source: '    result = 3;'
-      },
-      {
-        ruleId: 'indent',
-        severity: 2,
-        message: 'Expected indentation of 8 space characters but found 4.',
-        line: 14,
-        column: 5,
-        nodeType: 'BreakStatement',
-        source: '    break;'
-      }
-    ]);
+
+    var msg = results.messages[0];
+
+    expect(msg.ruleId).to.equal('indent');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Expected indentation of 4 space characters but found 0.');
+    expect(msg.line).to.equal(9);
+    expect(msg.column).to.equal(1);
+    expect(msg.nodeType).to.equal('SwitchCase');
+    expect(msg.source).to.equal('case \'bar\':');
+
+    msg = results.messages[1];
+
+    expect(msg.ruleId).to.equal('indent');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Expected indentation of 8 space characters but found 4.');
+    expect(msg.line).to.equal(10);
+    expect(msg.column).to.equal(5);
+    expect(msg.nodeType).to.equal('ExpressionStatement');
+    expect(msg.source).to.equal('    result = 2;');
+
+    msg = results.messages[2];
+
+    expect(msg.ruleId).to.equal('indent');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Expected indentation of 8 space characters but found 4.');
+    expect(msg.line).to.equal(11);
+    expect(msg.column).to.equal(5);
+    expect(msg.nodeType).to.equal('BreakStatement');
+    expect(msg.source).to.equal('    break;');
+
+    msg = results.messages[3];
+
+    expect(msg.ruleId).to.equal('indent');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Expected indentation of 8 space characters but found 4.');
+    expect(msg.line).to.equal(13);
+    expect(msg.column).to.equal(5);
+    expect(msg.nodeType).to.equal('ExpressionStatement');
+    expect(msg.source).to.equal('    result = 3;');
+
+    msg = results.messages[4];
+
+    expect(msg.ruleId).to.equal('indent');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Expected indentation of 8 space characters but found 4.');
+    expect(msg.line).to.equal(14);
+    expect(msg.column).to.equal(5);
+    expect(msg.nodeType).to.equal('BreakStatement');
+    expect(msg.source).to.equal('    break;');
+
     done();
   });
 
@@ -122,15 +127,16 @@ describe('eslint-config-hapi', function () {
     expect(output.warningCount).to.equal(0);
     expect(results.errorCount).to.equal(1);
     expect(results.warningCount).to.equal(0);
-    expect(results.messages).to.deep.equal([{
-      ruleId: 'semi',
-      severity: 2,
-      message: 'Missing semicolon.',
-      line: 3,
-      column: 14,
-      nodeType: 'ReturnStatement',
-      source: '    return 42'
-    }]);
+
+    var msg = results.messages[0];
+
+    expect(msg.ruleId).to.equal('semi');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Missing semicolon.');
+    expect(msg.line).to.equal(3);
+    expect(msg.column).to.equal(14);
+    expect(msg.nodeType).to.equal('ReturnStatement');
+    expect(msg.source).to.equal('    return 42');
     done();
   });
 
@@ -142,15 +148,16 @@ describe('eslint-config-hapi', function () {
     expect(output.warningCount).to.equal(1);
     expect(results.errorCount).to.equal(0);
     expect(results.warningCount).to.equal(1);
-    expect(results.messages).to.deep.equal([{
-      ruleId: 'hapi/hapi-scope-start',
-      severity: 1,
-      message: 'Missing blank line at beginning of function.',
-      line: 1,
-      column: 11,
-      nodeType: 'FunctionExpression',
-      source: 'var foo = function () {'
-    }]);
+
+    var msg = results.messages[0];
+
+    expect(msg.ruleId).to.equal('hapi/hapi-scope-start');
+    expect(msg.severity).to.equal(1);
+    expect(msg.message).to.equal('Missing blank line at beginning of function.');
+    expect(msg.line).to.equal(1);
+    expect(msg.column).to.equal(11);
+    expect(msg.nodeType).to.equal('FunctionExpression');
+    expect(msg.source).to.equal('var foo = function () {');
     done();
   });
 
@@ -162,15 +169,37 @@ describe('eslint-config-hapi', function () {
     expect(output.warningCount).to.equal(1);
     expect(results.errorCount).to.equal(0);
     expect(results.warningCount).to.equal(1);
-    expect(results.messages).to.deep.equal([{
-      ruleId: 'hapi/no-shadow-relaxed',
-      severity: 1,
-      message: 'res is already declared in the upper scope.',
-      line: 27,
-      column: 31,
-      nodeType: 'Identifier',
-      source: '        var inner = function (res) {'
-    }]);
+
+    var msg = results.messages[0];
+
+    expect(msg.ruleId).to.equal('hapi/no-shadow-relaxed');
+    expect(msg.severity).to.equal(1);
+    expect(msg.message).to.equal('res is already declared in the upper scope.');
+    expect(msg.line).to.equal(27);
+    expect(msg.column).to.equal(31);
+    expect(msg.nodeType).to.equal('Identifier');
+    expect(msg.source).to.equal('        var inner = function (res) {');
+    done();
+  });
+
+  it('enforces no-unused-vars', function (done) {
+    var output = lintFile('fixtures/no-unused-vars.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(0);
+    expect(output.warningCount).to.equal(1);
+    expect(results.errorCount).to.equal(0);
+    expect(results.warningCount).to.equal(1);
+
+    var msg = results.messages[0];
+
+    expect(msg.ruleId).to.equal('no-unused-vars');
+    expect(msg.severity).to.equal(1);
+    expect(msg.message).to.equal('"internals2" is defined but never used');
+    expect(msg.line).to.equal(2);
+    expect(msg.column).to.equal(5);
+    expect(msg.nodeType).to.equal('Identifier');
+    expect(msg.source).to.equal('var internals2 = {};');
     done();
   });
 

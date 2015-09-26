@@ -8,3 +8,4 @@ var bar = function () {
 };
 
 foo();
+bar();
