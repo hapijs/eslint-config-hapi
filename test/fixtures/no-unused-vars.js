@@ -1,5 +1,7 @@
 var internals = {};
 var internals2 = {};
-var bar = {};
+var bar = function (foo) {
+
+};
 
 return bar;
