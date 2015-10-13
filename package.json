@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-hapi",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Shareable ESLint config for the hapi ecosystem",
   "author": "Continuation Labs <contact@continuation.io> (http://continuation.io/)",
   "main": "lib/index.js",
@@ -23,7 +23,7 @@
     "code": "1.x.x",
     "eslint": "1.x.x",
     "eslint-plugin-hapi": "1.x.x",
-    "lab": "5.x.x"
+    "lab": "6.x.x"
   },
   "keywords": [
     "hapi",
