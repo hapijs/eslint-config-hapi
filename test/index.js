@@ -36,6 +36,27 @@ function lintString(str) {
 }
 
 describe('eslint-config-hapi', function () {
+  it('enforces stroustrup style braces', function (done) {
+    var output = lintFile('fixtures/brace-style.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(0);
+    expect(output.warningCount).to.equal(1);
+    expect(results.errorCount).to.equal(0);
+    expect(results.warningCount).to.equal(1);
+
+    var msg = results.messages[0];
+
+    expect(msg.ruleId).to.equal('brace-style');
+    expect(msg.severity).to.equal(1);
+    expect(msg.message).to.equal('Closing curly brace appears on the same line as the subsequent block.');
+    expect(msg.line).to.equal(6);
+    expect(msg.column).to.equal(8);
+    expect(msg.nodeType).to.equal('BlockStatement');
+    expect(msg.source).to.equal('} else {');
+    done();
+  });
+
   it('enforces four space indentation', function (done) {
     var output = lintFile('fixtures/indent.js');
     var results = output.results[0];
