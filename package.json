@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-hapi",
-  "version": "3.0.2",
+  "version": "4.0.0",
   "description": "Shareable ESLint config for the hapi ecosystem",
   "author": "Continuation Labs <contact@continuation.io> (http://continuation.io/)",
   "main": "lib/index.js",
@@ -14,12 +14,14 @@
   },
   "license": "MIT",
   "scripts": {
-    "test": "lab -v -t 100 -a code"
+    "lint": "belly-button -I 'node_modules/**' -I  'test/fixtures/**'",
+    "test": "npm run lint && lab -v -t 100 -a code"
   },
   "peerDependencies": {
     "eslint-plugin-hapi": "1.x.x"
   },
   "devDependencies": {
+    "belly-button": "1.x.x",
     "code": "1.x.x",
     "eslint": "1.x.x",
     "eslint-plugin-hapi": "1.x.x",
