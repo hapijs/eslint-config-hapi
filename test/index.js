@@ -15,21 +15,21 @@ var it = lab.it;
 
 Code.settings.truncateMessages = false;
 
-function getLinter() {
+function getLinter () {
   return new CLIEngine({
     useEslintrc: false,
     baseConfig: Config
   });
 }
 
-function lintFile(file) {
+function lintFile (file) {
   var cli = getLinter();
   var data = Fs.readFileSync(Path.join(__dirname, file), 'utf8');
 
   return cli.executeOnText(data);
 }
 
-function lintString(str) {
+function lintString (str) {
   var cli = getLinter();
 
   return cli.executeOnText(str);
