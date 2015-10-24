@@ -3,14 +3,14 @@
 
 // Declare internals
 
-var internals = {};
+const internals = {};
 
 
 module.exports.foo = function (value) {
 
-    var top = function (err) {
+    const top = function (err) {
 
-        var inner = function (err) {
+        const inner = function (err) {
 
             return value;
         };
@@ -22,9 +22,9 @@ module.exports.foo = function (value) {
 
 module.exports.bar = function (value) {
 
-    var top = function (res) {
+    const top = function (res) {
 
-        var inner = function (res) {
+        const inner = function (res) {
 
             return value;
         };

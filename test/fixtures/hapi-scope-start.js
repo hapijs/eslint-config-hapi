@@ -1,9 +1,9 @@
 /* eslint-disable strict */
-var foo = function () {
+const foo = function () {
     return 'there should be a blank line before this line';
 };
 
-var bar = function () {
+const bar = function () {
 
     return 'no lint errors';
 };

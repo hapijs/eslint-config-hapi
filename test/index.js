@@ -191,9 +191,9 @@ describe('eslint-config-hapi', function () {
     expect(msg.severity).to.equal(1);
     expect(msg.message).to.equal('Missing blank line at beginning of function.');
     expect(msg.line).to.equal(2);
-    expect(msg.column).to.equal(11);
+    expect(msg.column).to.equal(13);
     expect(msg.nodeType).to.equal('FunctionExpression');
-    expect(msg.source).to.equal('var foo = function () {');
+    expect(msg.source).to.equal('const foo = function () {');
     done();
   });
 
@@ -212,9 +212,9 @@ describe('eslint-config-hapi', function () {
     expect(msg.severity).to.equal(1);
     expect(msg.message).to.equal('res is already declared in the upper scope.');
     expect(msg.line).to.equal(27);
-    expect(msg.column).to.equal(31);
+    expect(msg.column).to.equal(33);
     expect(msg.nodeType).to.equal('Identifier');
-    expect(msg.source).to.equal('        var inner = function (res) {');
+    expect(msg.source).to.equal('        const inner = function (res) {');
     done();
   });
 
@@ -233,9 +233,9 @@ describe('eslint-config-hapi', function () {
     expect(msg.severity).to.equal(1);
     expect(msg.message).to.equal('"internals2" is defined but never used');
     expect(msg.line).to.equal(3);
-    expect(msg.column).to.equal(5);
+    expect(msg.column).to.equal(7);
     expect(msg.nodeType).to.equal('Identifier');
-    expect(msg.source).to.equal('var internals2 = {};');
+    expect(msg.source).to.equal('const internals2 = {};');
     done();
   });
 
@@ -257,6 +257,27 @@ describe('eslint-config-hapi', function () {
     expect(msg.column).to.equal(5);
     expect(msg.nodeType).to.equal('Identifier');
     expect(msg.source).to.equal('let foo = 1;');
+    done();
+  });
+
+  it('enforces no-var', function (done) {
+    var output = lintFile('fixtures/no-var.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(1);
+    expect(output.warningCount).to.equal(0);
+    expect(results.errorCount).to.equal(1);
+    expect(results.warningCount).to.equal(0);
+
+    var msg = results.messages[0];
+
+    expect(msg.ruleId).to.equal('no-var');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Unexpected var, use let or const instead.');
+    expect(msg.line).to.equal(3);
+    expect(msg.column).to.equal(1);
+    expect(msg.nodeType).to.equal('VariableDeclaration');
+    expect(msg.source).to.equal('var foo = 1;');
     done();
   });
 

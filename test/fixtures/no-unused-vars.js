@@ -1,7 +1,7 @@
 /* eslint-disable strict */
-var internals = {};
-var internals2 = {};
-var bar = function (foo) {
+const internals = {};
+const internals2 = {};
+const bar = function (foo) {
 
 };
 

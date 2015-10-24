@@ -1,6 +1,6 @@
 /* eslint-disable strict */
-var foo = 'foo';
-var result = 0;
+const foo = 'foo';
+let result = 0;
 
 switch (foo) {
     case 'foo':

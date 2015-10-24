@@ -1,4 +1,4 @@
 /* eslint-disable strict */
-var Fs = require('fs');
+const Fs = require('fs');
 
 module.exports = Fs;

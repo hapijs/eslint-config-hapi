@@ -1,6 +1,6 @@
 /* eslint-disable strict */
-var foo = true;
-var bar = 0;
+const foo = true;
+let bar = 0;
 
 if (foo) {
     bar = 1;
