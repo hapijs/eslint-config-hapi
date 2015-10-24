@@ -239,6 +239,27 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
+  it('enforces prefer-const', function (done) {
+    var output = lintFile('fixtures/prefer-const.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(1);
+    expect(output.warningCount).to.equal(0);
+    expect(results.errorCount).to.equal(1);
+    expect(results.warningCount).to.equal(0);
+
+    var msg = results.messages[0];
+
+    expect(msg.ruleId).to.equal('prefer-const');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('`foo` is never modified, use `const` instead.');
+    expect(msg.line).to.equal(4);
+    expect(msg.column).to.equal(5);
+    expect(msg.nodeType).to.equal('Identifier');
+    expect(msg.source).to.equal('let foo = 1;');
+    done();
+  });
+
   it('enforces arrow-parens', function (done) {
     var output = lintFile('fixtures/arrow-parens.js');
     var results = output.results[0];
