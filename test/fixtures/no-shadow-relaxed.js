@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable strict, no-unused-vars */
 
 
 // Declare internals

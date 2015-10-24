@@ -1,3 +1,4 @@
+/* eslint-disable strict */
 var foo = 'foo';
 var result = 0;
 

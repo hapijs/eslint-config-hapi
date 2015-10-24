@@ -29,13 +29,28 @@ function lintFile (file) {
   return cli.executeOnText(data);
 }
 
-function lintString (str) {
-  var cli = getLinter();
-
-  return cli.executeOnText(str);
-}
-
 describe('eslint-config-hapi', function () {
+  it('enforces file level strict mode', function (done) {
+    var output = lintFile('fixtures/strict.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(1);
+    expect(output.warningCount).to.equal(0);
+    expect(results.errorCount).to.equal(1);
+    expect(results.warningCount).to.equal(0);
+
+    var msg = results.messages[0];
+
+    expect(msg.ruleId).to.equal('strict');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Use the global form of "use strict".');
+    expect(msg.line).to.equal(2);
+    expect(msg.column).to.equal(1);
+    expect(msg.nodeType).to.equal('Program');
+    expect(msg.source).to.equal('const foo = \'this should be using strict mode but isnt\';');
+    done();
+  });
+
   it('enforces stroustrup style braces', function (done) {
     var output = lintFile('fixtures/brace-style.js');
     var results = output.results[0];
@@ -50,7 +65,7 @@ describe('eslint-config-hapi', function () {
     expect(msg.ruleId).to.equal('brace-style');
     expect(msg.severity).to.equal(1);
     expect(msg.message).to.equal('Closing curly brace appears on the same line as the subsequent block.');
-    expect(msg.line).to.equal(6);
+    expect(msg.line).to.equal(7);
     expect(msg.column).to.equal(8);
     expect(msg.nodeType).to.equal('BlockStatement');
     expect(msg.source).to.equal('} else {');
@@ -71,7 +86,7 @@ describe('eslint-config-hapi', function () {
     expect(msg.ruleId).to.equal('indent');
     expect(msg.severity).to.equal(2);
     expect(msg.message).to.equal('Expected indentation of 4 space characters but found 2.');
-    expect(msg.line).to.equal(3);
+    expect(msg.line).to.equal(4);
     expect(msg.column).to.equal(3);
     expect(msg.nodeType).to.equal('ReturnStatement');
     expect(msg.source).to.equal('  return value + 1;');
@@ -92,7 +107,7 @@ describe('eslint-config-hapi', function () {
     expect(msg.ruleId).to.equal('indent');
     expect(msg.severity).to.equal(2);
     expect(msg.message).to.equal('Expected indentation of 4 space characters but found 0.');
-    expect(msg.line).to.equal(9);
+    expect(msg.line).to.equal(10);
     expect(msg.column).to.equal(1);
     expect(msg.nodeType).to.equal('SwitchCase');
     expect(msg.source).to.equal('case \'bar\':');
@@ -102,7 +117,7 @@ describe('eslint-config-hapi', function () {
     expect(msg.ruleId).to.equal('indent');
     expect(msg.severity).to.equal(2);
     expect(msg.message).to.equal('Expected indentation of 8 space characters but found 4.');
-    expect(msg.line).to.equal(10);
+    expect(msg.line).to.equal(11);
     expect(msg.column).to.equal(5);
     expect(msg.nodeType).to.equal('ExpressionStatement');
     expect(msg.source).to.equal('    result = 2;');
@@ -112,7 +127,7 @@ describe('eslint-config-hapi', function () {
     expect(msg.ruleId).to.equal('indent');
     expect(msg.severity).to.equal(2);
     expect(msg.message).to.equal('Expected indentation of 8 space characters but found 4.');
-    expect(msg.line).to.equal(11);
+    expect(msg.line).to.equal(12);
     expect(msg.column).to.equal(5);
     expect(msg.nodeType).to.equal('BreakStatement');
     expect(msg.source).to.equal('    break;');
@@ -122,7 +137,7 @@ describe('eslint-config-hapi', function () {
     expect(msg.ruleId).to.equal('indent');
     expect(msg.severity).to.equal(2);
     expect(msg.message).to.equal('Expected indentation of 8 space characters but found 4.');
-    expect(msg.line).to.equal(13);
+    expect(msg.line).to.equal(14);
     expect(msg.column).to.equal(5);
     expect(msg.nodeType).to.equal('ExpressionStatement');
     expect(msg.source).to.equal('    result = 3;');
@@ -132,7 +147,7 @@ describe('eslint-config-hapi', function () {
     expect(msg.ruleId).to.equal('indent');
     expect(msg.severity).to.equal(2);
     expect(msg.message).to.equal('Expected indentation of 8 space characters but found 4.');
-    expect(msg.line).to.equal(14);
+    expect(msg.line).to.equal(15);
     expect(msg.column).to.equal(5);
     expect(msg.nodeType).to.equal('BreakStatement');
     expect(msg.source).to.equal('    break;');
@@ -154,7 +169,7 @@ describe('eslint-config-hapi', function () {
     expect(msg.ruleId).to.equal('semi');
     expect(msg.severity).to.equal(2);
     expect(msg.message).to.equal('Missing semicolon.');
-    expect(msg.line).to.equal(3);
+    expect(msg.line).to.equal(4);
     expect(msg.column).to.equal(14);
     expect(msg.nodeType).to.equal('ReturnStatement');
     expect(msg.source).to.equal('    return 42');
@@ -175,7 +190,7 @@ describe('eslint-config-hapi', function () {
     expect(msg.ruleId).to.equal('hapi/hapi-scope-start');
     expect(msg.severity).to.equal(1);
     expect(msg.message).to.equal('Missing blank line at beginning of function.');
-    expect(msg.line).to.equal(1);
+    expect(msg.line).to.equal(2);
     expect(msg.column).to.equal(11);
     expect(msg.nodeType).to.equal('FunctionExpression');
     expect(msg.source).to.equal('var foo = function () {');
@@ -217,10 +232,60 @@ describe('eslint-config-hapi', function () {
     expect(msg.ruleId).to.equal('no-unused-vars');
     expect(msg.severity).to.equal(1);
     expect(msg.message).to.equal('"internals2" is defined but never used');
-    expect(msg.line).to.equal(2);
+    expect(msg.line).to.equal(3);
     expect(msg.column).to.equal(5);
     expect(msg.nodeType).to.equal('Identifier');
     expect(msg.source).to.equal('var internals2 = {};');
+    done();
+  });
+
+  it('enforces arrow-parens', function (done) {
+    var output = lintFile('fixtures/arrow-parens.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(1);
+    expect(output.warningCount).to.equal(0);
+    expect(results.errorCount).to.equal(1);
+    expect(results.warningCount).to.equal(0);
+
+    var msg = results.messages[0];
+
+    expect(msg.ruleId).to.equal('arrow-parens');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Expected parentheses around arrow function argument.');
+    expect(msg.line).to.equal(2);
+    expect(msg.column).to.equal(13);
+    expect(msg.nodeType).to.equal('ArrowFunctionExpression');
+    expect(msg.source).to.equal('const foo = bar => {');
+    done();
+  });
+
+  it('enforces arrow-spacing', function (done) {
+    var output = lintFile('fixtures/arrow-spacing.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(2);
+    expect(output.warningCount).to.equal(0);
+    expect(results.errorCount).to.equal(2);
+    expect(results.warningCount).to.equal(0);
+
+    var msg = results.messages[0];
+    expect(msg.ruleId).to.equal('arrow-spacing');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Missing space before =>');
+    expect(msg.line).to.equal(2);
+    expect(msg.column).to.equal(17);
+    expect(msg.nodeType).to.equal('Punctuator');
+    expect(msg.source).to.equal('const foo = (bar)=> {');
+
+    msg = results.messages[1];
+    expect(msg.ruleId).to.equal('arrow-spacing');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Missing space after =>');
+    expect(msg.line).to.equal(7);
+    expect(msg.column).to.equal(22);
+    expect(msg.nodeType).to.equal('Punctuator');
+    expect(msg.source).to.equal('const baz = (quux) =>{');
     done();
   });
 
@@ -237,8 +302,7 @@ describe('eslint-config-hapi', function () {
   });
 
   it('uses the ES6 environment', function (done) {
-    // Do this as a string to prevent problems during testing on old versions of Node
-    var output = lintString('module.exports = `__filename = ${__filename}`;\n');
+    var output = lintFile('fixtures/es6-env.js');
     var results = output.results[0];
 
     expect(output.errorCount).to.equal(0);

@@ -15,7 +15,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "belly-button -I 'node_modules/**' -I  'test/fixtures/**'",
-    "test": "npm run lint && lab -v -t 100 -a code"
+    "test": "npm run lint && lab -T test/transformer.js -v -t 100 -a code"
   },
   "peerDependencies": {
     "eslint-plugin-hapi": "1.x.x"

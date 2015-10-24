@@ -1,3 +1,4 @@
+/* eslint-disable strict */
 var foo = function () {
     return 'there should be a blank line before this line';
 };

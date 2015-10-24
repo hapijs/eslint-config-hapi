@@ -1,3 +1,4 @@
+/* eslint-disable strict */
 module.exports.foo = function (value) {
 
   return value + 1;

@@ -1,3 +1,4 @@
+/* eslint-disable strict */
 var foo = true;
 var bar = 0;
 
