@@ -197,6 +197,27 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
+  it('enforces hapi/no-arrowception', function (done) {
+    var output = lintFile('fixtures/no-arrowception.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(1);
+    expect(output.warningCount).to.equal(0);
+    expect(results.errorCount).to.equal(1);
+    expect(results.warningCount).to.equal(0);
+
+    var msg = results.messages[0];
+
+    expect(msg.ruleId).to.equal('hapi/no-arrowception');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Arrow function implicitly creates arrow function.');
+    expect(msg.line).to.equal(2);
+    expect(msg.column).to.equal(13);
+    expect(msg.nodeType).to.equal('ArrowFunctionExpression');
+    expect(msg.source).to.equal('const foo = () => () => 85;');
+    done();
+  });
+
   it('enforces hapi/no-shadow-relaxed', function (done) {
     var output = lintFile('fixtures/no-shadow-relaxed.js');
     var results = output.results[0];
