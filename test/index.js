@@ -239,6 +239,27 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
+  it('enforces one-var rule', function (done) {
+    var output = lintFile('fixtures/one-var.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(1);
+    expect(output.warningCount).to.equal(0);
+    expect(results.errorCount).to.equal(1);
+    expect(results.warningCount).to.equal(0);
+
+    var msg = results.messages[0];
+
+    expect(msg.ruleId).to.equal('one-var');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Split \'let\' declarations into multiple statements.');
+    expect(msg.line).to.equal(5);
+    expect(msg.column).to.equal(1);
+    expect(msg.nodeType).to.equal('VariableDeclaration');
+    expect(msg.source).to.equal('let baz, quux;');
+    done();
+  });
+
   it('enforces no-unused-vars', function (done) {
     var output = lintFile('fixtures/no-unused-vars.js');
     var results = output.results[0];
