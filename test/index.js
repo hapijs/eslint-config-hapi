@@ -281,6 +281,38 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
+  it('enforces no-use-before-define rule', function (done) {
+    var output = lintFile('fixtures/no-use-before-define.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(2);
+    expect(output.warningCount).to.equal(0);
+    expect(results.errorCount).to.equal(2);
+    expect(results.warningCount).to.equal(0);
+
+    var msg = results.messages[0];
+
+    expect(msg.ruleId).to.equal('no-use-before-define');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('foo was used before it was defined');
+    expect(msg.line).to.equal(3);
+    expect(msg.column).to.equal(1);
+    expect(msg.nodeType).to.equal('Identifier');
+    expect(msg.source).to.equal('foo();');
+
+    msg = results.messages[1];
+
+    expect(msg.ruleId).to.equal('no-use-before-define');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('bar was used before it was defined');
+    expect(msg.line).to.equal(4);
+    expect(msg.column).to.equal(1);
+    expect(msg.nodeType).to.equal('Identifier');
+    expect(msg.source).to.equal('bar = 5;');
+
+    done();
+  });
+
   it('enforces prefer-const', function (done) {
     var output = lintFile('fixtures/prefer-const.js');
     var results = output.results[0];
