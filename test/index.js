@@ -218,8 +218,8 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('enforces hapi/no-shadow-relaxed', function (done) {
-    var output = lintFile('fixtures/no-shadow-relaxed.js');
+  it('enforces no-shadow rule', function (done) {
+    var output = lintFile('fixtures/no-shadow.js');
     var results = output.results[0];
 
     expect(output.errorCount).to.equal(0);
@@ -229,7 +229,7 @@ describe('eslint-config-hapi', function () {
 
     var msg = results.messages[0];
 
-    expect(msg.ruleId).to.equal('hapi/no-shadow-relaxed');
+    expect(msg.ruleId).to.equal('no-shadow');
     expect(msg.severity).to.equal(1);
     expect(msg.message).to.equal('res is already declared in the upper scope.');
     expect(msg.line).to.equal(27);
