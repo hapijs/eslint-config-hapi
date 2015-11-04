@@ -426,6 +426,27 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
+  it('enforces no-arrow-condition rule', function (done) {
+    var output = lintFile('fixtures/no-arrow-condition.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(1);
+    expect(output.warningCount).to.equal(0);
+    expect(results.errorCount).to.equal(1);
+    expect(results.warningCount).to.equal(0);
+
+    var msg = results.messages[0];
+
+    expect(msg.ruleId).to.equal('no-arrow-condition');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Arrow function `=>` used inside IfStatement instead of comparison operator.');
+    expect(msg.line).to.equal(3);
+    expect(msg.column).to.equal(1);
+    expect(msg.nodeType).to.equal('IfStatement');
+    expect(msg.source).to.equal('if ((foo) => 1) {');
+    done();
+  });
+
   it('uses the node environment', function (done) {
     var output = lintFile('fixtures/node-env.js');
     var results = output.results[0];
