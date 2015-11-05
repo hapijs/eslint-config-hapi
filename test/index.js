@@ -5,6 +5,7 @@ var Code = require('code');
 var ESLint = require('eslint');
 var Lab = require('lab');
 var Config = require('../lib');
+var Es5Config = require('../lib/es5');
 var CLIEngine = ESLint.CLIEngine;
 
 // Test shortcuts
@@ -15,15 +16,15 @@ var it = lab.it;
 
 Code.settings.truncateMessages = false;
 
-function getLinter () {
+function getLinter (config) {
   return new CLIEngine({
     useEslintrc: false,
-    baseConfig: Config
+    baseConfig: config || Config
   });
 }
 
-function lintFile (file) {
-  var cli = getLinter();
+function lintFile (file, config) {
+  var cli = getLinter(config);
   var data = Fs.readFileSync(Path.join(__dirname, file), 'utf8');
 
   return cli.executeOnText(data);
@@ -473,6 +474,18 @@ describe('eslint-config-hapi', function () {
 
   it('does not enforce the camelcase lint rule', function (done) {
     var output = lintFile('fixtures/camelcase.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(0);
+    expect(output.warningCount).to.equal(0);
+    expect(results.errorCount).to.equal(0);
+    expect(results.warningCount).to.equal(0);
+    expect(results.messages).to.deep.equal([]);
+    done();
+  });
+
+  it('supports ES5 linting', function (done) {
+    var output = lintFile('fixtures/es5.js', Es5Config);
     var results = output.results[0];
 
     expect(output.errorCount).to.equal(0);
