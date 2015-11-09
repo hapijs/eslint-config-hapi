@@ -177,6 +177,37 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
+  it('enforces space-before-function-paren', function (done) {
+    var output = lintFile('fixtures/space-before-function-paren.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(2);
+    expect(output.warningCount).to.equal(0);
+    expect(results.errorCount).to.equal(2);
+    expect(results.warningCount).to.equal(0);
+
+    var msg = results.messages[0];
+
+    expect(msg.ruleId).to.equal('space-before-function-paren');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Missing space before function parentheses.');
+    expect(msg.line).to.equal(8);
+    expect(msg.column).to.equal(21);
+    expect(msg.nodeType).to.equal('FunctionExpression');
+    expect(msg.source).to.equal('const bar = function() {');
+
+    msg = results.messages[1];
+
+    expect(msg.ruleId).to.equal('space-before-function-paren');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Unexpected space before function parentheses.');
+    expect(msg.line).to.equal(16);
+    expect(msg.column).to.equal(27);
+    expect(msg.nodeType).to.equal('FunctionExpression');
+    expect(msg.source).to.equal('const quux = function quux () {');
+    done();
+  });
+
   it('enforces hapi/hapi-scope-start', function (done) {
     var output = lintFile('fixtures/hapi-scope-start.js');
     var results = output.results[0];
@@ -232,7 +263,7 @@ describe('eslint-config-hapi', function () {
 
     expect(msg.ruleId).to.equal('no-shadow');
     expect(msg.severity).to.equal(1);
-    expect(msg.message).to.equal('res is already declared in the upper scope.');
+    expect(msg.message).to.equal('"res" is already declared in the upper scope.');
     expect(msg.line).to.equal(27);
     expect(msg.column).to.equal(33);
     expect(msg.nodeType).to.equal('Identifier');
