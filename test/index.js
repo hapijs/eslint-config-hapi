@@ -208,6 +208,37 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
+  it('enforces hapi/hapi-for-you', function (done) {
+    var output = lintFile('fixtures/hapi-for-you.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(0);
+    expect(output.warningCount).to.equal(2);
+    expect(results.errorCount).to.equal(0);
+    expect(results.warningCount).to.equal(2);
+
+    var msg = results.messages[0];
+
+    expect(msg.ruleId).to.equal('hapi/hapi-for-you');
+    expect(msg.severity).to.equal(1);
+    expect(msg.message).to.equal('Expected iterator \'j\', but got \'k\'.');
+    expect(msg.line).to.equal(6);
+    expect(msg.column).to.equal(5);
+    expect(msg.nodeType).to.equal('ForStatement');
+    expect(msg.source).to.equal('    for (let k = 0; k < arr.length; k++) {');
+
+    msg = results.messages[1];
+
+    expect(msg.ruleId).to.equal('hapi/hapi-for-you');
+    expect(msg.severity).to.equal(1);
+    expect(msg.message).to.equal('Update to iterator should use prefix operator.');
+    expect(msg.line).to.equal(6);
+    expect(msg.column).to.equal(5);
+    expect(msg.nodeType).to.equal('ForStatement');
+    expect(msg.source).to.equal('    for (let k = 0; k < arr.length; k++) {');
+    done();
+  });
+
   it('enforces hapi/hapi-scope-start', function (done) {
     var output = lintFile('fixtures/hapi-scope-start.js');
     var results = output.results[0];
