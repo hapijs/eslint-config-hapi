@@ -1,16 +1,11 @@
-/* eslint-disable strict, no-unused-vars, handle-callback-err */
-
-
-// Declare internals
-
-const internals = {};
-
+/* eslint-disable no-unused-vars */
+'use strict';
 
 module.exports.foo = function (value) {
 
     const top = function (err) {
 
-        const inner = function (err) {
+        const inner = function (e) {
 
             return value;
         };
@@ -22,9 +17,9 @@ module.exports.foo = function (value) {
 
 module.exports.bar = function (value) {
 
-    const top = function (res) {
+    const top = function (abc) {
 
-        const inner = function (res) {
+        const inner = function (xyz) {
 
             return value;
         };

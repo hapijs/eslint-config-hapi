@@ -478,6 +478,38 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
+  it('enforces handle-callback-err rule', function (done) {
+    var output = lintFile('fixtures/handle-callback-err.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(2);
+    expect(output.warningCount).to.equal(0);
+    expect(results.errorCount).to.equal(2);
+    expect(results.warningCount).to.equal(0);
+
+    var msg = results.messages[0];
+
+    expect(msg.ruleId).to.equal('handle-callback-err');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Expected error to be handled.');
+    expect(msg.line).to.equal(6);
+    expect(msg.column).to.equal(17);
+    expect(msg.nodeType).to.equal('FunctionExpression');
+    expect(msg.source).to.equal('    const top = function (err) {');
+
+    msg = results.messages[1];
+
+    expect(msg.ruleId).to.equal('handle-callback-err');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Expected error to be handled.');
+    expect(msg.line).to.equal(8);
+    expect(msg.column).to.equal(23);
+    expect(msg.nodeType).to.equal('FunctionExpression');
+    expect(msg.source).to.equal('        const inner = function (e) {');
+
+    done();
+  });
+
   it('uses the node environment', function (done) {
     var output = lintFile('fixtures/node-env.js');
     var results = output.results[0];
