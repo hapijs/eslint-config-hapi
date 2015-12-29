@@ -260,6 +260,27 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
+  it('enforces hapi/hapi-capitalize-modules', function (done) {
+    var output = lintFile('fixtures/hapi-capitalize-modules.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(0);
+    expect(output.warningCount).to.equal(1);
+    expect(results.errorCount).to.equal(0);
+    expect(results.warningCount).to.equal(1);
+
+    var msg = results.messages[0];
+
+    expect(msg.ruleId).to.equal('hapi/hapi-capitalize-modules');
+    expect(msg.severity).to.equal(1);
+    expect(msg.message).to.equal('Imported module variable name not capitalized.');
+    expect(msg.line).to.equal(4);
+    expect(msg.column).to.equal(7);
+    expect(msg.nodeType).to.equal('VariableDeclarator');
+    expect(msg.source).to.equal('const net = require(\'net\');');
+    done();
+  });
+
   it('enforces hapi/no-arrowception', function (done) {
     var output = lintFile('fixtures/no-arrowception.js');
     var results = output.results[0];
