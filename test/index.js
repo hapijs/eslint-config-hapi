@@ -44,7 +44,7 @@ describe('eslint-config-hapi', function () {
 
     expect(msg.ruleId).to.equal('strict');
     expect(msg.severity).to.equal(2);
-    expect(msg.message).to.equal('Use the global form of "use strict".');
+    expect(msg.message).to.equal('Use the global form of \'use strict\'.');
     expect(msg.line).to.equal(2);
     expect(msg.column).to.equal(1);
     expect(msg.nodeType).to.equal('Program');
@@ -315,7 +315,7 @@ describe('eslint-config-hapi', function () {
 
     expect(msg.ruleId).to.equal('no-shadow');
     expect(msg.severity).to.equal(1);
-    expect(msg.message).to.equal('"res" is already declared in the upper scope.');
+    expect(msg.message).to.equal('\'res\' is already declared in the upper scope.');
     expect(msg.line).to.equal(27);
     expect(msg.column).to.equal(33);
     expect(msg.nodeType).to.equal('Identifier');
@@ -357,7 +357,7 @@ describe('eslint-config-hapi', function () {
 
     expect(msg.ruleId).to.equal('no-unused-vars');
     expect(msg.severity).to.equal(1);
-    expect(msg.message).to.equal('"internals2" is defined but never used');
+    expect(msg.message).to.equal('\'internals2\' is defined but never used');
     expect(msg.line).to.equal(3);
     expect(msg.column).to.equal(7);
     expect(msg.nodeType).to.equal('Identifier');
@@ -378,7 +378,7 @@ describe('eslint-config-hapi', function () {
 
     expect(msg.ruleId).to.equal('prefer-const');
     expect(msg.severity).to.equal(2);
-    expect(msg.message).to.equal('`foo` is never modified, use `const` instead.');
+    expect(msg.message).to.equal('\'foo\' is never modified, use \'const\' instead.');
     expect(msg.line).to.equal(4);
     expect(msg.column).to.equal(5);
     expect(msg.nodeType).to.equal('Identifier');
@@ -478,8 +478,8 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('enforces no-arrow-condition rule', function (done) {
-    var output = lintFile('fixtures/no-arrow-condition.js');
+  it('enforces no-constant-condition rule', function (done) {
+    var output = lintFile('fixtures/no-constant-condition.js');
     var results = output.results[0];
 
     expect(output.errorCount).to.equal(1);
@@ -489,9 +489,9 @@ describe('eslint-config-hapi', function () {
 
     var msg = results.messages[0];
 
-    expect(msg.ruleId).to.equal('no-arrow-condition');
+    expect(msg.ruleId).to.equal('no-constant-condition');
     expect(msg.severity).to.equal(2);
-    expect(msg.message).to.equal('Arrow function `=>` used inside IfStatement instead of comparison operator.');
+    expect(msg.message).to.equal('Unexpected constant condition.');
     expect(msg.line).to.equal(3);
     expect(msg.column).to.equal(1);
     expect(msg.nodeType).to.equal('IfStatement');

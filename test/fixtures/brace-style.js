@@ -1,4 +1,4 @@
-/* eslint-disable strict */
+/* eslint-disable strict, keyword-spacing */
 const foo = true;
 let bar = 0;
 

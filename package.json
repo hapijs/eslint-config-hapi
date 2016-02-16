@@ -23,7 +23,7 @@
   "devDependencies": {
     "belly-button": "1.x.x",
     "code": "1.x.x",
-    "eslint": "1.x.x",
+    "eslint": "2.x.x",
     "eslint-plugin-hapi": "4.x.x",
     "lab": "6.x.x"
   },
