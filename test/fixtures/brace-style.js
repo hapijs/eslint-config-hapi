@@ -4,7 +4,7 @@ let bar = 0;
 
 if (foo) {
     bar = 1;
-} else {
+}else {
     bar = 2;
 }
 
