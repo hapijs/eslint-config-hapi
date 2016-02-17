@@ -67,9 +67,9 @@ describe('eslint-config-hapi', function () {
     expect(msg.severity).to.equal(1);
     expect(msg.message).to.equal('Closing curly brace appears on the same line as the subsequent block.');
     expect(msg.line).to.equal(7);
-    expect(msg.column).to.equal(8);
+    expect(msg.column).to.equal(7);
     expect(msg.nodeType).to.equal('BlockStatement');
-    expect(msg.source).to.equal('} else {');
+    expect(msg.source).to.equal('}else {');
     done();
   });
 
