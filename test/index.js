@@ -499,6 +499,88 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
+  it('enforces no-unsafe-finally rule', function (done) {
+    var output = lintFile('fixtures/no-unsafe-finally.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(1);
+    expect(output.warningCount).to.equal(0);
+    expect(results.errorCount).to.equal(1);
+    expect(results.warningCount).to.equal(0);
+
+    var msg = results.messages[0];
+
+    expect(msg.ruleId).to.equal('no-unsafe-finally');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Unsafe usage of ReturnStatement');
+    expect(msg.line).to.equal(12);
+    expect(msg.column).to.equal(9);
+    expect(msg.nodeType).to.equal('ReturnStatement');
+    expect(msg.source).to.equal('        return 3;');
+    done();
+  });
+
+  it('enforces no-useless-computed-key rule', function (done) {
+    var output = lintFile('fixtures/no-useless-computed-key.js');
+    var results = output.results[0];
+
+    expect(output.errorCount).to.equal(5);
+    expect(output.warningCount).to.equal(0);
+    expect(results.errorCount).to.equal(5);
+    expect(results.warningCount).to.equal(0);
+
+    var msg = results.messages[0];
+
+    expect(msg.ruleId).to.equal('no-useless-computed-key');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Unnecessarily computed property [\'0\'] found.');
+    expect(msg.line).to.equal(2);
+    expect(msg.column).to.equal(22);
+    expect(msg.nodeType).to.equal('Property');
+    expect(msg.source).to.equal('module.exports.a = { [\'0\']: 0 };');
+
+    msg = results.messages[1];
+
+    expect(msg.ruleId).to.equal('no-useless-computed-key');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Unnecessarily computed property [\'0+1,234\'] found.');
+    expect(msg.line).to.equal(3);
+    expect(msg.column).to.equal(22);
+    expect(msg.nodeType).to.equal('Property');
+    expect(msg.source).to.equal('module.exports.a = { [\'0+1,234\']: 0 };');
+
+    msg = results.messages[2];
+
+    expect(msg.ruleId).to.equal('no-useless-computed-key');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Unnecessarily computed property [0] found.');
+    expect(msg.line).to.equal(4);
+    expect(msg.column).to.equal(22);
+    expect(msg.nodeType).to.equal('Property');
+    expect(msg.source).to.equal('module.exports.a = { [0]: 0 };');
+
+    msg = results.messages[3];
+
+    expect(msg.ruleId).to.equal('no-useless-computed-key');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Unnecessarily computed property [\'x\'] found.');
+    expect(msg.line).to.equal(5);
+    expect(msg.column).to.equal(22);
+    expect(msg.nodeType).to.equal('Property');
+    expect(msg.source).to.equal('module.exports.a = { [\'x\']: 0 };');
+
+    msg = results.messages[4];
+
+    expect(msg.ruleId).to.equal('no-useless-computed-key');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Unnecessarily computed property [\'x\'] found.');
+    expect(msg.line).to.equal(6);
+    expect(msg.column).to.equal(22);
+    expect(msg.nodeType).to.equal('Property');
+    expect(msg.source).to.equal('module.exports.a = { [\'x\']() {} };');
+    done();
+  });
+
   it('enforces handle-callback-err rule', function (done) {
     var output = lintFile('fixtures/handle-callback-err.js');
     var results = output.results[0];
