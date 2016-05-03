@@ -378,7 +378,7 @@ describe('eslint-config-hapi', function () {
 
     expect(msg.ruleId).to.equal('prefer-const');
     expect(msg.severity).to.equal(2);
-    expect(msg.message).to.equal('\'foo\' is never modified, use \'const\' instead.');
+    expect(msg.message).to.equal('\'foo\' is never reassigned, use \'const\' instead.');
     expect(msg.line).to.equal(4);
     expect(msg.column).to.equal(5);
     expect(msg.nodeType).to.equal('Identifier');
