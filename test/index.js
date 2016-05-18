@@ -213,6 +213,7 @@ describe('eslint-config-hapi', function () {
     var results = output.results[0];
     var msg = results.messages[0];
 
+    expect(msg).to.exist();
     expect(msg.ruleId).to.equal('dependencies/case-sensitive');
     expect(msg.severity).to.equal(2);
     done();
