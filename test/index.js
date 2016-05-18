@@ -211,8 +211,8 @@ describe('eslint-config-hapi', function () {
   it('enforces dependencies/case-sensitive', function (done) {
     var output = lintFile('fixtures/dependencies-case-sensitive.js');
     var results = output.results[0];
-
     var msg = results.messages[0];
+
     expect(msg.ruleId).to.equal('dependencies/case-sensitive');
     expect(msg.severity).to.equal(2);
     done();
