@@ -18,12 +18,14 @@
     "test": "npm run lint && lab -T test/transformer.js -v -t 100 -a code"
   },
   "peerDependencies": {
+    "eslint-plugin-dependencies": "1.2.x",
     "eslint-plugin-hapi": "4.x.x"
   },
   "devDependencies": {
     "belly-button": "2.x.x",
     "code": "2.x.x",
     "eslint": "2.x.x",
+    "eslint-plugin-dependencies": "1.2.x",
     "eslint-plugin-hapi": "4.x.x",
     "lab": "10.x.x"
   },
