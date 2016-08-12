@@ -357,7 +357,7 @@ describe('eslint-config-hapi', function () {
 
     expect(msg.ruleId).to.equal('no-unused-vars');
     expect(msg.severity).to.equal(1);
-    expect(msg.message).to.equal('\'internals2\' is defined but never used');
+    expect(msg.message).to.equal('\'internals2\' is defined but never used.');
     expect(msg.line).to.equal(3);
     expect(msg.column).to.equal(7);
     expect(msg.nodeType).to.equal('Identifier');
@@ -378,7 +378,7 @@ describe('eslint-config-hapi', function () {
 
     expect(msg.ruleId).to.equal('prefer-const');
     expect(msg.severity).to.equal(2);
-    expect(msg.message).to.equal('\'foo\' is never reassigned, use \'const\' instead.');
+    expect(msg.message).to.equal('\'foo\' is never reassigned. Use \'const\' instead.');
     expect(msg.line).to.equal(4);
     expect(msg.column).to.equal(5);
     expect(msg.nodeType).to.equal('Identifier');
@@ -440,7 +440,7 @@ describe('eslint-config-hapi', function () {
     var msg = results.messages[0];
     expect(msg.ruleId).to.equal('arrow-spacing');
     expect(msg.severity).to.equal(2);
-    expect(msg.message).to.equal('Missing space before =>');
+    expect(msg.message).to.equal('Missing space before =>.');
     expect(msg.line).to.equal(2);
     expect(msg.column).to.equal(17);
     expect(msg.nodeType).to.equal('Punctuator');
@@ -449,7 +449,7 @@ describe('eslint-config-hapi', function () {
     msg = results.messages[1];
     expect(msg.ruleId).to.equal('arrow-spacing');
     expect(msg.severity).to.equal(2);
-    expect(msg.message).to.equal('Missing space after =>');
+    expect(msg.message).to.equal('Missing space after =>.');
     expect(msg.line).to.equal(7);
     expect(msg.column).to.equal(22);
     expect(msg.nodeType).to.equal('Punctuator');
@@ -512,7 +512,7 @@ describe('eslint-config-hapi', function () {
 
     expect(msg.ruleId).to.equal('no-unsafe-finally');
     expect(msg.severity).to.equal(2);
-    expect(msg.message).to.equal('Unsafe usage of ReturnStatement');
+    expect(msg.message).to.equal('Unsafe usage of ReturnStatement.');
     expect(msg.line).to.equal(12);
     expect(msg.column).to.equal(9);
     expect(msg.nodeType).to.equal('ReturnStatement');
@@ -621,7 +621,7 @@ describe('eslint-config-hapi', function () {
     expect(output.warningCount).to.equal(0);
     expect(results.errorCount).to.equal(0);
     expect(results.warningCount).to.equal(0);
-    expect(results.messages).to.deep.equal([]);
+    expect(results.messages).to.equal([]);
     done();
   });
 
@@ -633,7 +633,7 @@ describe('eslint-config-hapi', function () {
     expect(output.warningCount).to.equal(0);
     expect(results.errorCount).to.equal(0);
     expect(results.warningCount).to.equal(0);
-    expect(results.messages).to.deep.equal([]);
+    expect(results.messages).to.equal([]);
     done();
   });
 
@@ -645,7 +645,7 @@ describe('eslint-config-hapi', function () {
     expect(output.warningCount).to.equal(0);
     expect(results.errorCount).to.equal(0);
     expect(results.warningCount).to.equal(0);
-    expect(results.messages).to.deep.equal([]);
+    expect(results.messages).to.equal([]);
     done();
   });
 
@@ -657,7 +657,7 @@ describe('eslint-config-hapi', function () {
     expect(output.warningCount).to.equal(0);
     expect(results.errorCount).to.equal(0);
     expect(results.warningCount).to.equal(0);
-    expect(results.messages).to.deep.equal([]);
+    expect(results.messages).to.equal([]);
     done();
   });
 });
