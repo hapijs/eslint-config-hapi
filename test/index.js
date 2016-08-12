@@ -456,6 +456,27 @@ describe('eslint-config-hapi', () => {
     done();
   });
 
+  it('enforces object-shorthand', (done) => {
+    const output = lintFile('fixtures/object-shorthand.js');
+    const results = output.results[0];
+
+    expect(output.errorCount).to.equal(1);
+    expect(output.warningCount).to.equal(0);
+    expect(results.errorCount).to.equal(1);
+    expect(results.warningCount).to.equal(0);
+
+    const msg = results.messages[0];
+
+    expect(msg.ruleId).to.equal('object-shorthand');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('Expected property shorthand.');
+    expect(msg.line).to.equal(10);
+    expect(msg.column).to.equal(5);
+    expect(msg.nodeType).to.equal('Property');
+    expect(msg.source).to.equal('    b: b,');
+    done();
+  });
+
   it('enforces prefer-arrow-callback', (done) => {
     const output = lintFile('fixtures/prefer-arrow-callback.js');
     const results = output.results[0];
