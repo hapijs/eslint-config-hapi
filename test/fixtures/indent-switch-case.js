@@ -1,4 +1,4 @@
-/* eslint-disable strict */
+'use strict';
 const foo = 'foo';
 let result = 0;
 

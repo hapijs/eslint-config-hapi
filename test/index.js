@@ -1,18 +1,17 @@
 'use strict';
-var Fs = require('fs');
-var Path = require('path');
-var Code = require('code');
-var ESLint = require('eslint');
-var Lab = require('lab');
-var Config = require('../lib');
-var Es5Config = require('../lib/es5');
-var CLIEngine = ESLint.CLIEngine;
+const Fs = require('fs');
+const Path = require('path');
+const Code = require('code');
+const ESLint = require('eslint');
+const Lab = require('lab');
+const Config = require('../lib');
+const CLIEngine = ESLint.CLIEngine;
 
 // Test shortcuts
-var lab = exports.lab = Lab.script();
-var expect = Code.expect;
-var describe = lab.describe;
-var it = lab.it;
+const lab = exports.lab = Lab.script();
+const expect = Code.expect;
+const describe = lab.describe;
+const it = lab.it;
 
 Code.settings.truncateMessages = false;
 
@@ -24,23 +23,23 @@ function getLinter (config) {
 }
 
 function lintFile (file, config) {
-  var cli = getLinter(config);
-  var data = Fs.readFileSync(Path.join(__dirname, file), 'utf8');
+  const cli = getLinter(config);
+  const data = Fs.readFileSync(Path.join(__dirname, file), 'utf8');
 
   return cli.executeOnText(data);
 }
 
-describe('eslint-config-hapi', function () {
-  it('enforces file level strict mode', function (done) {
-    var output = lintFile('fixtures/strict.js');
-    var results = output.results[0];
+describe('eslint-config-hapi', () => {
+  it('enforces file level strict mode', (done) => {
+    const output = lintFile('fixtures/strict.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(1);
     expect(output.warningCount).to.equal(0);
     expect(results.errorCount).to.equal(1);
     expect(results.warningCount).to.equal(0);
 
-    var msg = results.messages[0];
+    const msg = results.messages[0];
 
     expect(msg.ruleId).to.equal('strict');
     expect(msg.severity).to.equal(2);
@@ -52,37 +51,37 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('enforces stroustrup style braces', function (done) {
-    var output = lintFile('fixtures/brace-style.js');
-    var results = output.results[0];
+  it('enforces stroustrup style braces', (done) => {
+    const output = lintFile('fixtures/brace-style.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(0);
     expect(output.warningCount).to.equal(1);
     expect(results.errorCount).to.equal(0);
     expect(results.warningCount).to.equal(1);
 
-    var msg = results.messages[0];
+    const msg = results.messages[0];
 
     expect(msg.ruleId).to.equal('brace-style');
     expect(msg.severity).to.equal(1);
     expect(msg.message).to.equal('Closing curly brace appears on the same line as the subsequent block.');
-    expect(msg.line).to.equal(7);
+    expect(msg.line).to.equal(9);
     expect(msg.column).to.equal(8);
     expect(msg.nodeType).to.equal('BlockStatement');
     expect(msg.source).to.equal('} else {');
     done();
   });
 
-  it('enforces four space indentation', function (done) {
-    var output = lintFile('fixtures/indent.js');
-    var results = output.results[0];
+  it('enforces four space indentation', (done) => {
+    const output = lintFile('fixtures/indent.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(1);
     expect(output.warningCount).to.equal(0);
     expect(results.errorCount).to.equal(1);
     expect(results.warningCount).to.equal(0);
 
-    var msg = results.messages[0];
+    const msg = results.messages[0];
 
     expect(msg.ruleId).to.equal('indent');
     expect(msg.severity).to.equal(2);
@@ -94,16 +93,16 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('enforces case indentation in switch statements', function (done) {
-    var output = lintFile('fixtures/indent-switch-case.js');
-    var results = output.results[0];
+  it('enforces case indentation in switch statements', (done) => {
+    const output = lintFile('fixtures/indent-switch-case.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(5);
     expect(output.warningCount).to.equal(0);
     expect(results.errorCount).to.equal(5);
     expect(results.warningCount).to.equal(0);
 
-    var msg = results.messages[0];
+    let msg = results.messages[0];
 
     expect(msg.ruleId).to.equal('indent');
     expect(msg.severity).to.equal(2);
@@ -156,16 +155,16 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('enforces semicolon usage', function (done) {
-    var output = lintFile('fixtures/semi.js');
-    var results = output.results[0];
+  it('enforces semicolon usage', (done) => {
+    const output = lintFile('fixtures/semi.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(1);
     expect(output.warningCount).to.equal(0);
     expect(results.errorCount).to.equal(1);
     expect(results.warningCount).to.equal(0);
 
-    var msg = results.messages[0];
+    const msg = results.messages[0];
 
     expect(msg.ruleId).to.equal('semi');
     expect(msg.severity).to.equal(2);
@@ -177,16 +176,16 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('enforces space-before-function-paren', function (done) {
-    var output = lintFile('fixtures/space-before-function-paren.js');
-    var results = output.results[0];
+  it('enforces space-before-function-paren', (done) => {
+    const output = lintFile('fixtures/space-before-function-paren.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(2);
     expect(output.warningCount).to.equal(0);
     expect(results.errorCount).to.equal(2);
     expect(results.warningCount).to.equal(0);
 
-    var msg = results.messages[0];
+    let msg = results.messages[0];
 
     expect(msg.ruleId).to.equal('space-before-function-paren');
     expect(msg.severity).to.equal(2);
@@ -208,16 +207,16 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('enforces hapi/hapi-for-you', function (done) {
-    var output = lintFile('fixtures/hapi-for-you.js');
-    var results = output.results[0];
+  it('enforces hapi/hapi-for-you', (done) => {
+    const output = lintFile('fixtures/hapi-for-you.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(0);
     expect(output.warningCount).to.equal(2);
     expect(results.errorCount).to.equal(0);
     expect(results.warningCount).to.equal(2);
 
-    var msg = results.messages[0];
+    let msg = results.messages[0];
 
     expect(msg.ruleId).to.equal('hapi/hapi-for-you');
     expect(msg.severity).to.equal(1);
@@ -239,16 +238,16 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('enforces hapi/hapi-scope-start', function (done) {
-    var output = lintFile('fixtures/hapi-scope-start.js');
-    var results = output.results[0];
+  it('enforces hapi/hapi-scope-start', (done) => {
+    const output = lintFile('fixtures/hapi-scope-start.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(0);
     expect(output.warningCount).to.equal(1);
     expect(results.errorCount).to.equal(0);
     expect(results.warningCount).to.equal(1);
 
-    var msg = results.messages[0];
+    const msg = results.messages[0];
 
     expect(msg.ruleId).to.equal('hapi/hapi-scope-start');
     expect(msg.severity).to.equal(1);
@@ -260,16 +259,16 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('enforces hapi/hapi-capitalize-modules', function (done) {
-    var output = lintFile('fixtures/hapi-capitalize-modules.js');
-    var results = output.results[0];
+  it('enforces hapi/hapi-capitalize-modules', (done) => {
+    const output = lintFile('fixtures/hapi-capitalize-modules.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(0);
     expect(output.warningCount).to.equal(1);
     expect(results.errorCount).to.equal(0);
     expect(results.warningCount).to.equal(1);
 
-    var msg = results.messages[0];
+    const msg = results.messages[0];
 
     expect(msg.ruleId).to.equal('hapi/hapi-capitalize-modules');
     expect(msg.severity).to.equal(1);
@@ -281,16 +280,16 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('enforces hapi/no-arrowception', function (done) {
-    var output = lintFile('fixtures/no-arrowception.js');
-    var results = output.results[0];
+  it('enforces hapi/no-arrowception', (done) => {
+    const output = lintFile('fixtures/no-arrowception.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(1);
     expect(output.warningCount).to.equal(0);
     expect(results.errorCount).to.equal(1);
     expect(results.warningCount).to.equal(0);
 
-    var msg = results.messages[0];
+    const msg = results.messages[0];
 
     expect(msg.ruleId).to.equal('hapi/no-arrowception');
     expect(msg.severity).to.equal(2);
@@ -302,16 +301,16 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('enforces no-shadow rule', function (done) {
-    var output = lintFile('fixtures/no-shadow.js');
-    var results = output.results[0];
+  it('enforces no-shadow rule', (done) => {
+    const output = lintFile('fixtures/no-shadow.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(0);
     expect(output.warningCount).to.equal(1);
     expect(results.errorCount).to.equal(0);
     expect(results.warningCount).to.equal(1);
 
-    var msg = results.messages[0];
+    const msg = results.messages[0];
 
     expect(msg.ruleId).to.equal('no-shadow');
     expect(msg.severity).to.equal(1);
@@ -323,16 +322,16 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('enforces one-var rule', function (done) {
-    var output = lintFile('fixtures/one-var.js');
-    var results = output.results[0];
+  it('enforces one-var rule', (done) => {
+    const output = lintFile('fixtures/one-var.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(1);
     expect(output.warningCount).to.equal(0);
     expect(results.errorCount).to.equal(1);
     expect(results.warningCount).to.equal(0);
 
-    var msg = results.messages[0];
+    const msg = results.messages[0];
 
     expect(msg.ruleId).to.equal('one-var');
     expect(msg.severity).to.equal(2);
@@ -344,16 +343,16 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('enforces no-unused-vars', function (done) {
-    var output = lintFile('fixtures/no-unused-vars.js');
-    var results = output.results[0];
+  it('enforces no-unused-vars', (done) => {
+    const output = lintFile('fixtures/no-unused-vars.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(0);
     expect(output.warningCount).to.equal(1);
     expect(results.errorCount).to.equal(0);
     expect(results.warningCount).to.equal(1);
 
-    var msg = results.messages[0];
+    const msg = results.messages[0];
 
     expect(msg.ruleId).to.equal('no-unused-vars');
     expect(msg.severity).to.equal(1);
@@ -365,16 +364,16 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('enforces prefer-const', function (done) {
-    var output = lintFile('fixtures/prefer-const.js');
-    var results = output.results[0];
+  it('enforces prefer-const', (done) => {
+    const output = lintFile('fixtures/prefer-const.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(1);
     expect(output.warningCount).to.equal(0);
     expect(results.errorCount).to.equal(1);
     expect(results.warningCount).to.equal(0);
 
-    var msg = results.messages[0];
+    const msg = results.messages[0];
 
     expect(msg.ruleId).to.equal('prefer-const');
     expect(msg.severity).to.equal(2);
@@ -386,16 +385,16 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('enforces no-var', function (done) {
-    var output = lintFile('fixtures/no-var.js');
-    var results = output.results[0];
+  it('enforces no-var', (done) => {
+    const output = lintFile('fixtures/no-var.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(1);
     expect(output.warningCount).to.equal(0);
     expect(results.errorCount).to.equal(1);
     expect(results.warningCount).to.equal(0);
 
-    var msg = results.messages[0];
+    const msg = results.messages[0];
 
     expect(msg.ruleId).to.equal('no-var');
     expect(msg.severity).to.equal(2);
@@ -407,16 +406,16 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('enforces arrow-parens', function (done) {
-    var output = lintFile('fixtures/arrow-parens.js');
-    var results = output.results[0];
+  it('enforces arrow-parens', (done) => {
+    const output = lintFile('fixtures/arrow-parens.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(1);
     expect(output.warningCount).to.equal(0);
     expect(results.errorCount).to.equal(1);
     expect(results.warningCount).to.equal(0);
 
-    var msg = results.messages[0];
+    const msg = results.messages[0];
 
     expect(msg.ruleId).to.equal('arrow-parens');
     expect(msg.severity).to.equal(2);
@@ -428,16 +427,16 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('enforces arrow-spacing', function (done) {
-    var output = lintFile('fixtures/arrow-spacing.js');
-    var results = output.results[0];
+  it('enforces arrow-spacing', (done) => {
+    const output = lintFile('fixtures/arrow-spacing.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(2);
     expect(output.warningCount).to.equal(0);
     expect(results.errorCount).to.equal(2);
     expect(results.warningCount).to.equal(0);
 
-    var msg = results.messages[0];
+    let msg = results.messages[0];
     expect(msg.ruleId).to.equal('arrow-spacing');
     expect(msg.severity).to.equal(2);
     expect(msg.message).to.equal('Missing space before =>.');
@@ -457,16 +456,16 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('enforces prefer-arrow-callback', function (done) {
-    var output = lintFile('fixtures/prefer-arrow-callback.js');
-    var results = output.results[0];
+  it('enforces prefer-arrow-callback', (done) => {
+    const output = lintFile('fixtures/prefer-arrow-callback.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(1);
     expect(output.warningCount).to.equal(0);
     expect(results.errorCount).to.equal(1);
     expect(results.warningCount).to.equal(0);
 
-    var msg = results.messages[0];
+    const msg = results.messages[0];
 
     expect(msg.ruleId).to.equal('prefer-arrow-callback');
     expect(msg.severity).to.equal(2);
@@ -478,16 +477,16 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('enforces no-constant-condition rule', function (done) {
-    var output = lintFile('fixtures/no-constant-condition.js');
-    var results = output.results[0];
+  it('enforces no-constant-condition rule', (done) => {
+    const output = lintFile('fixtures/no-constant-condition.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(1);
     expect(output.warningCount).to.equal(0);
     expect(results.errorCount).to.equal(1);
     expect(results.warningCount).to.equal(0);
 
-    var msg = results.messages[0];
+    const msg = results.messages[0];
 
     expect(msg.ruleId).to.equal('no-constant-condition');
     expect(msg.severity).to.equal(2);
@@ -499,16 +498,16 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('enforces no-unsafe-finally rule', function (done) {
-    var output = lintFile('fixtures/no-unsafe-finally.js');
-    var results = output.results[0];
+  it('enforces no-unsafe-finally rule', (done) => {
+    const output = lintFile('fixtures/no-unsafe-finally.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(1);
     expect(output.warningCount).to.equal(0);
     expect(results.errorCount).to.equal(1);
     expect(results.warningCount).to.equal(0);
 
-    var msg = results.messages[0];
+    const msg = results.messages[0];
 
     expect(msg.ruleId).to.equal('no-unsafe-finally');
     expect(msg.severity).to.equal(2);
@@ -520,16 +519,16 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('enforces no-useless-computed-key rule', function (done) {
-    var output = lintFile('fixtures/no-useless-computed-key.js');
-    var results = output.results[0];
+  it('enforces no-useless-computed-key rule', (done) => {
+    const output = lintFile('fixtures/no-useless-computed-key.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(5);
     expect(output.warningCount).to.equal(0);
     expect(results.errorCount).to.equal(5);
     expect(results.warningCount).to.equal(0);
 
-    var msg = results.messages[0];
+    let msg = results.messages[0];
 
     expect(msg.ruleId).to.equal('no-useless-computed-key');
     expect(msg.severity).to.equal(2);
@@ -581,16 +580,16 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('enforces handle-callback-err rule', function (done) {
-    var output = lintFile('fixtures/handle-callback-err.js');
-    var results = output.results[0];
+  it('enforces handle-callback-err rule', (done) => {
+    const output = lintFile('fixtures/handle-callback-err.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(2);
     expect(output.warningCount).to.equal(0);
     expect(results.errorCount).to.equal(2);
     expect(results.warningCount).to.equal(0);
 
-    var msg = results.messages[0];
+    let msg = results.messages[0];
 
     expect(msg.ruleId).to.equal('handle-callback-err');
     expect(msg.severity).to.equal(2);
@@ -613,9 +612,9 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('uses the node environment', function (done) {
-    var output = lintFile('fixtures/node-env.js');
-    var results = output.results[0];
+  it('uses the node environment', (done) => {
+    const output = lintFile('fixtures/node-env.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(0);
     expect(output.warningCount).to.equal(0);
@@ -625,9 +624,9 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('uses the ES6 environment', function (done) {
-    var output = lintFile('fixtures/es6-env.js');
-    var results = output.results[0];
+  it('uses the ES6 environment', (done) => {
+    const output = lintFile('fixtures/es6-env.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(0);
     expect(output.warningCount).to.equal(0);
@@ -637,21 +636,9 @@ describe('eslint-config-hapi', function () {
     done();
   });
 
-  it('does not enforce the camelcase lint rule', function (done) {
-    var output = lintFile('fixtures/camelcase.js');
-    var results = output.results[0];
-
-    expect(output.errorCount).to.equal(0);
-    expect(output.warningCount).to.equal(0);
-    expect(results.errorCount).to.equal(0);
-    expect(results.warningCount).to.equal(0);
-    expect(results.messages).to.equal([]);
-    done();
-  });
-
-  it('supports ES5 linting', function (done) {
-    var output = lintFile('fixtures/es5.js', Es5Config);
-    var results = output.results[0];
+  it('does not enforce the camelcase lint rule', (done) => {
+    const output = lintFile('fixtures/camelcase.js');
+    const results = output.results[0];
 
     expect(output.errorCount).to.equal(0);
     expect(output.warningCount).to.equal(0);

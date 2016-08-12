@@ -15,13 +15,3 @@ Shareable ESLint config for the hapi ecosystem. To use in your project, add `esl
 ESLint will automatically insert the `eslint-config-`, so technically, you can just write `"extends": "hapi"`.
 
 **Note:** `eslint-plugin-hapi` is a plugin containing custom hapi linting rules. It is a peer dependency because of the way ESLint handles shareable configs that include plugins and custom rules (see [eslint/eslint#3458](https://github.com/eslint/eslint/issues/3458) and [eslint/eslint#2518](https://github.com/eslint/eslint/issues/2518) for more background).
-
-## Working with ES5
-
-By default, `eslint-config-hapi` enforces several rules that require ES6 features. If you would like to use `eslint-config-hapi`, but are unable to abandon ES5, you can use ES5 config. To use this config, add `eslint-config-hapi` and `eslint-plugin-hapi` to your `package.json`. Then, in your ESLint configuration add:
-
-```
-{
-  "extends": "eslint-config-hapi/lib/es5"
-}
-```
