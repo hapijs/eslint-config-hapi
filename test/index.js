@@ -343,6 +343,28 @@ describe('eslint-config-hapi', () => {
     done();
   });
 
+  it('enforces no-undef rule', (done) => {
+    lintFile('fixtures/no-undef.js');
+    const output = lintFile('fixtures/no-undef.js');
+    const results = output.results[0];
+
+    expect(output.errorCount).to.equal(1);
+    expect(output.warningCount).to.equal(0);
+    expect(results.errorCount).to.equal(1);
+    expect(results.warningCount).to.equal(0);
+
+    const msg = results.messages[0];
+
+    expect(msg.ruleId).to.equal('no-undef');
+    expect(msg.severity).to.equal(2);
+    expect(msg.message).to.equal('\'bar\' is not defined.');
+    expect(msg.line).to.equal(5);
+    expect(msg.column).to.equal(17);
+    expect(msg.nodeType).to.equal('Identifier');
+    expect(msg.source).to.equal('    const baz = bar;');
+    done();
+  });
+
   it('enforces no-unused-vars', (done) => {
     const output = lintFile('fixtures/no-unused-vars.js');
     const results = output.results[0];
