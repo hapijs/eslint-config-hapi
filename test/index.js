@@ -66,8 +66,8 @@ describe('eslint-config-hapi', () => {
     expect(msg.severity).to.equal(1);
     expect(msg.message).to.equal('Closing curly brace appears on the same line as the subsequent block.');
     expect(msg.line).to.equal(9);
-    expect(msg.column).to.equal(8);
-    expect(msg.nodeType).to.equal('BlockStatement');
+    expect(msg.column).to.equal(1);
+    expect(msg.nodeType).to.equal('Punctuator');
     expect(msg.source).to.equal('} else {');
     done();
   });
@@ -85,10 +85,10 @@ describe('eslint-config-hapi', () => {
 
     expect(msg.ruleId).to.equal('indent');
     expect(msg.severity).to.equal(2);
-    expect(msg.message).to.equal('Expected indentation of 4 space characters but found 2.');
+    expect(msg.message).to.equal('Expected indentation of 4 spaces but found 2.');
     expect(msg.line).to.equal(4);
-    expect(msg.column).to.equal(3);
-    expect(msg.nodeType).to.equal('ReturnStatement');
+    expect(msg.column).to.equal(1);
+    expect(msg.nodeType).to.equal('Keyword');
     expect(msg.source).to.equal('  return value + 1;');
     done();
   });
@@ -106,50 +106,50 @@ describe('eslint-config-hapi', () => {
 
     expect(msg.ruleId).to.equal('indent');
     expect(msg.severity).to.equal(2);
-    expect(msg.message).to.equal('Expected indentation of 4 space characters but found 0.');
+    expect(msg.message).to.equal('Expected indentation of 4 spaces but found 0.');
     expect(msg.line).to.equal(10);
     expect(msg.column).to.equal(1);
-    expect(msg.nodeType).to.equal('SwitchCase');
+    expect(msg.nodeType).to.equal('Keyword');
     expect(msg.source).to.equal('case \'bar\':');
 
     msg = results.messages[1];
 
     expect(msg.ruleId).to.equal('indent');
     expect(msg.severity).to.equal(2);
-    expect(msg.message).to.equal('Expected indentation of 8 space characters but found 4.');
+    expect(msg.message).to.equal('Expected indentation of 8 spaces but found 4.');
     expect(msg.line).to.equal(11);
-    expect(msg.column).to.equal(5);
-    expect(msg.nodeType).to.equal('ExpressionStatement');
+    expect(msg.column).to.equal(1);
+    expect(msg.nodeType).to.equal('Identifier');
     expect(msg.source).to.equal('    result = 2;');
 
     msg = results.messages[2];
 
     expect(msg.ruleId).to.equal('indent');
     expect(msg.severity).to.equal(2);
-    expect(msg.message).to.equal('Expected indentation of 8 space characters but found 4.');
+    expect(msg.message).to.equal('Expected indentation of 8 spaces but found 4.');
     expect(msg.line).to.equal(12);
-    expect(msg.column).to.equal(5);
-    expect(msg.nodeType).to.equal('BreakStatement');
+    expect(msg.column).to.equal(1);
+    expect(msg.nodeType).to.equal('Keyword');
     expect(msg.source).to.equal('    break;');
 
     msg = results.messages[3];
 
     expect(msg.ruleId).to.equal('indent');
     expect(msg.severity).to.equal(2);
-    expect(msg.message).to.equal('Expected indentation of 8 space characters but found 4.');
+    expect(msg.message).to.equal('Expected indentation of 8 spaces but found 4.');
     expect(msg.line).to.equal(14);
-    expect(msg.column).to.equal(5);
-    expect(msg.nodeType).to.equal('ExpressionStatement');
+    expect(msg.column).to.equal(1);
+    expect(msg.nodeType).to.equal('Identifier');
     expect(msg.source).to.equal('    result = 3;');
 
     msg = results.messages[4];
 
     expect(msg.ruleId).to.equal('indent');
     expect(msg.severity).to.equal(2);
-    expect(msg.message).to.equal('Expected indentation of 8 space characters but found 4.');
+    expect(msg.message).to.equal('Expected indentation of 8 spaces but found 4.');
     expect(msg.line).to.equal(15);
-    expect(msg.column).to.equal(5);
-    expect(msg.nodeType).to.equal('BreakStatement');
+    expect(msg.column).to.equal(1);
+    expect(msg.nodeType).to.equal('Keyword');
     expect(msg.source).to.equal('    break;');
 
     done();
@@ -378,7 +378,7 @@ describe('eslint-config-hapi', () => {
 
     expect(msg.ruleId).to.equal('no-unused-vars');
     expect(msg.severity).to.equal(1);
-    expect(msg.message).to.equal('\'internals2\' is defined but never used.');
+    expect(msg.message).to.equal('\'internals2\' is assigned a value but never used.');
     expect(msg.line).to.equal(3);
     expect(msg.column).to.equal(7);
     expect(msg.nodeType).to.equal('Identifier');
