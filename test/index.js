@@ -378,7 +378,7 @@ describe('eslint-config-hapi', () => {
 
     expect(msg.ruleId).to.equal('no-unused-vars');
     expect(msg.severity).to.equal(1);
-    expect(msg.message).to.equal('\'internals2\' is assigned a value but never used.');
+    expect(msg.message).to.match(/'internals2' is assigned a value but never used\./);
     expect(msg.line).to.equal(3);
     expect(msg.column).to.equal(7);
     expect(msg.nodeType).to.equal('Identifier');
