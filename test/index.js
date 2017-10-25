@@ -407,7 +407,7 @@ describe('eslint-config-hapi', () => {
     done();
   });
 
-  it('enforces no-var', (done) => {
+  it('enforces hapi/hapi-no-var', (done) => {
     const output = lintFile('fixtures/no-var.js');
     const results = output.results[0];
 
@@ -418,7 +418,7 @@ describe('eslint-config-hapi', () => {
 
     const msg = results.messages[0];
 
-    expect(msg.ruleId).to.equal('no-var');
+    expect(msg.ruleId).to.equal('hapi/hapi-no-var');
     expect(msg.severity).to.equal(2);
     expect(msg.message).to.equal('Unexpected var, use let or const instead.');
     expect(msg.line).to.equal(3);
