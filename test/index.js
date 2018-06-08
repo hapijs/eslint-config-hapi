@@ -104,7 +104,7 @@ describe('eslint-config-hapi', () => {
     expect(msg.ruleId).to.equal('indent');
     expect(msg.severity).to.equal(2);
     expect(msg.message).to.equal('Expected indentation of 4 spaces but found 0.');
-    expect(msg.line).to.equal(10);
+    expect(msg.line).to.equal(11);
     expect(msg.column).to.equal(1);
     expect(msg.nodeType).to.equal('Keyword');
     expect(msg.source).to.equal('case \'bar\':');
@@ -114,7 +114,7 @@ describe('eslint-config-hapi', () => {
     expect(msg.ruleId).to.equal('indent');
     expect(msg.severity).to.equal(2);
     expect(msg.message).to.equal('Expected indentation of 8 spaces but found 4.');
-    expect(msg.line).to.equal(11);
+    expect(msg.line).to.equal(12);
     expect(msg.column).to.equal(1);
     expect(msg.nodeType).to.equal('Identifier');
     expect(msg.source).to.equal('    result = 2;');
@@ -124,7 +124,7 @@ describe('eslint-config-hapi', () => {
     expect(msg.ruleId).to.equal('indent');
     expect(msg.severity).to.equal(2);
     expect(msg.message).to.equal('Expected indentation of 8 spaces but found 4.');
-    expect(msg.line).to.equal(12);
+    expect(msg.line).to.equal(13);
     expect(msg.column).to.equal(1);
     expect(msg.nodeType).to.equal('Keyword');
     expect(msg.source).to.equal('    break;');
@@ -134,7 +134,7 @@ describe('eslint-config-hapi', () => {
     expect(msg.ruleId).to.equal('indent');
     expect(msg.severity).to.equal(2);
     expect(msg.message).to.equal('Expected indentation of 8 spaces but found 4.');
-    expect(msg.line).to.equal(14);
+    expect(msg.line).to.equal(15);
     expect(msg.column).to.equal(1);
     expect(msg.nodeType).to.equal('Identifier');
     expect(msg.source).to.equal('    result = 3;');
@@ -144,7 +144,7 @@ describe('eslint-config-hapi', () => {
     expect(msg.ruleId).to.equal('indent');
     expect(msg.severity).to.equal(2);
     expect(msg.message).to.equal('Expected indentation of 8 spaces but found 4.');
-    expect(msg.line).to.equal(15);
+    expect(msg.line).to.equal(16);
     expect(msg.column).to.equal(1);
     expect(msg.nodeType).to.equal('Keyword');
     expect(msg.source).to.equal('    break;');
@@ -214,7 +214,7 @@ describe('eslint-config-hapi', () => {
     expect(msg.ruleId).to.equal('hapi/hapi-for-you');
     expect(msg.severity).to.equal(1);
     expect(msg.message).to.equal('Expected iterator \'j\', but got \'k\'.');
-    expect(msg.line).to.equal(6);
+    expect(msg.line).to.equal(7);
     expect(msg.column).to.equal(5);
     expect(msg.nodeType).to.equal('ForStatement');
     expect(msg.source).to.equal('    for (let k = 0; k < arr.length; k++) {');
@@ -224,7 +224,7 @@ describe('eslint-config-hapi', () => {
     expect(msg.ruleId).to.equal('hapi/hapi-for-you');
     expect(msg.severity).to.equal(1);
     expect(msg.message).to.equal('Update to iterator should use prefix operator.');
-    expect(msg.line).to.equal(6);
+    expect(msg.line).to.equal(7);
     expect(msg.column).to.equal(5);
     expect(msg.nodeType).to.equal('ForStatement');
     expect(msg.source).to.equal('    for (let k = 0; k < arr.length; k++) {');
@@ -264,7 +264,7 @@ describe('eslint-config-hapi', () => {
     expect(msg.ruleId).to.equal('hapi/hapi-capitalize-modules');
     expect(msg.severity).to.equal(1);
     expect(msg.message).to.equal('Imported module variable name not capitalized.');
-    expect(msg.line).to.equal(4);
+    expect(msg.line).to.equal(5);
     expect(msg.column).to.equal(7);
     expect(msg.nodeType).to.equal('VariableDeclarator');
     expect(msg.source).to.equal('const net = require(\'net\');');
@@ -324,7 +324,7 @@ describe('eslint-config-hapi', () => {
     expect(msg.ruleId).to.equal('one-var');
     expect(msg.severity).to.equal(2);
     expect(msg.message).to.equal('Split \'let\' declarations into multiple statements.');
-    expect(msg.line).to.equal(5);
+    expect(msg.line).to.equal(6);
     expect(msg.column).to.equal(1);
     expect(msg.nodeType).to.equal('VariableDeclaration');
     expect(msg.source).to.equal('let baz, quux;');
@@ -345,7 +345,7 @@ describe('eslint-config-hapi', () => {
     expect(msg.ruleId).to.equal('no-undef');
     expect(msg.severity).to.equal(2);
     expect(msg.message).to.equal('\'bar\' is not defined.');
-    expect(msg.line).to.equal(5);
+    expect(msg.line).to.equal(6);
     expect(msg.column).to.equal(17);
     expect(msg.nodeType).to.equal('Identifier');
     expect(msg.source).to.equal('    const baz = bar;');
@@ -405,7 +405,7 @@ describe('eslint-config-hapi', () => {
     expect(msg.ruleId).to.equal('hapi/hapi-no-var');
     expect(msg.severity).to.equal(2);
     expect(msg.message).to.equal('Unexpected var, use let or const instead.');
-    expect(msg.line).to.equal(3);
+    expect(msg.line).to.equal(4);
     expect(msg.column).to.equal(1);
     expect(msg.nodeType).to.equal('VariableDeclaration');
     expect(msg.source).to.equal('var foo = 1;');
@@ -493,7 +493,7 @@ describe('eslint-config-hapi', () => {
     expect(msg.ruleId).to.equal('prefer-arrow-callback');
     expect(msg.severity).to.equal(2);
     expect(msg.message).to.equal('Unexpected function expression.');
-    expect(msg.line).to.equal(21);
+    expect(msg.line).to.equal(22);
     expect(msg.column).to.equal(8);
     expect(msg.nodeType).to.equal('FunctionExpression');
     expect(msg.source).to.equal('foo(4, function (err, value) {');
@@ -513,7 +513,7 @@ describe('eslint-config-hapi', () => {
     expect(msg.ruleId).to.equal('no-constant-condition');
     expect(msg.severity).to.equal(2);
     expect(msg.message).to.equal('Unexpected constant condition.');
-    expect(msg.line).to.equal(3);
+    expect(msg.line).to.equal(4);
     expect(msg.column).to.equal(5);
     expect(msg.nodeType).to.equal('ArrowFunctionExpression');
     expect(msg.source).to.equal('if ((foo) => 1) {');
