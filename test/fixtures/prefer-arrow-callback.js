@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars, handle-callback-err */
 'use strict';
+
 const foo = (arg, callback) => {
 
     return callback(null, arg + 1);
