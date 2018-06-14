@@ -535,8 +535,8 @@ describe('eslint-config-hapi', () => {
     expect(msg.severity).to.equal(2);
     expect(msg.message).to.equal('Unexpected constant condition.');
     expect(msg.line).to.equal(3);
-    expect(msg.column).to.equal(1);
-    expect(msg.nodeType).to.equal('IfStatement');
+    expect(msg.column).to.equal(5);
+    expect(msg.nodeType).to.equal('ArrowFunctionExpression');
     expect(msg.source).to.equal('if ((foo) => 1) {');
     done();
   });
