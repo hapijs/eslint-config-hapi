@@ -18,7 +18,7 @@
     "test": "npm run lint && lab -v -t 100 -a code"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=6.0.0"
   },
   "peerDependencies": {
     "eslint-plugin-hapi": "4.x.x"
