@@ -25,10 +25,10 @@
   },
   "devDependencies": {
     "belly-button": "4.x.x",
-    "code": "4.x.x",
+    "code": "5.x.x",
     "eslint": "4.x.x",
     "eslint-plugin-hapi": "4.x.x",
-    "lab": "14.x.x"
+    "lab": "15.x.x"
   },
   "keywords": [
     "hapi",

@@ -30,7 +30,7 @@ function lintFile (file, config) {
 }
 
 describe('eslint-config-hapi', () => {
-  it('enforces file level strict mode', (done) => {
+  it('enforces file level strict mode', () => {
     const output = lintFile('fixtures/strict.js');
     const results = output.results[0];
 
@@ -48,10 +48,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(1);
     expect(msg.nodeType).to.equal('Program');
     expect(msg.source).to.equal('const foo = \'this should be using strict mode but isnt\';');
-    done();
   });
 
-  it('enforces stroustrup style braces', (done) => {
+  it('enforces stroustrup style braces', () => {
     const output = lintFile('fixtures/brace-style.js');
     const results = output.results[0];
 
@@ -69,10 +68,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(1);
     expect(msg.nodeType).to.equal('Punctuator');
     expect(msg.source).to.equal('} else {');
-    done();
   });
 
-  it('enforces four space indentation', (done) => {
+  it('enforces four space indentation', () => {
     const output = lintFile('fixtures/indent.js');
     const results = output.results[0];
 
@@ -90,10 +88,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(1);
     expect(msg.nodeType).to.equal('Keyword');
     expect(msg.source).to.equal('  return value + 1;');
-    done();
   });
 
-  it('enforces case indentation in switch statements', (done) => {
+  it('enforces case indentation in switch statements', () => {
     const output = lintFile('fixtures/indent-switch-case.js');
     const results = output.results[0];
 
@@ -151,11 +148,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(1);
     expect(msg.nodeType).to.equal('Keyword');
     expect(msg.source).to.equal('    break;');
-
-    done();
   });
 
-  it('enforces semicolon usage', (done) => {
+  it('enforces semicolon usage', () => {
     const output = lintFile('fixtures/semi.js');
     const results = output.results[0];
 
@@ -173,10 +168,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(14);
     expect(msg.nodeType).to.equal('ReturnStatement');
     expect(msg.source).to.equal('    return 42');
-    done();
   });
 
-  it('enforces space-before-function-paren', (done) => {
+  it('enforces space-before-function-paren', () => {
     const output = lintFile('fixtures/space-before-function-paren.js');
     const results = output.results[0];
 
@@ -204,10 +198,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(27);
     expect(msg.nodeType).to.equal('FunctionExpression');
     expect(msg.source).to.equal('const quux = function quux () {');
-    done();
   });
 
-  it('enforces hapi/hapi-for-you', (done) => {
+  it('enforces hapi/hapi-for-you', () => {
     const output = lintFile('fixtures/hapi-for-you.js');
     const results = output.results[0];
 
@@ -235,10 +228,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(5);
     expect(msg.nodeType).to.equal('ForStatement');
     expect(msg.source).to.equal('    for (let k = 0; k < arr.length; k++) {');
-    done();
   });
 
-  it('enforces hapi/hapi-scope-start', (done) => {
+  it('enforces hapi/hapi-scope-start', () => {
     const output = lintFile('fixtures/hapi-scope-start.js');
     const results = output.results[0];
 
@@ -256,10 +248,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(13);
     expect(msg.nodeType).to.equal('FunctionExpression');
     expect(msg.source).to.equal('const foo = function () {');
-    done();
   });
 
-  it('enforces hapi/hapi-capitalize-modules', (done) => {
+  it('enforces hapi/hapi-capitalize-modules', () => {
     const output = lintFile('fixtures/hapi-capitalize-modules.js');
     const results = output.results[0];
 
@@ -277,10 +268,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(7);
     expect(msg.nodeType).to.equal('VariableDeclarator');
     expect(msg.source).to.equal('const net = require(\'net\');');
-    done();
   });
 
-  it('enforces hapi/no-arrowception', (done) => {
+  it('enforces hapi/no-arrowception', () => {
     const output = lintFile('fixtures/no-arrowception.js');
     const results = output.results[0];
 
@@ -298,10 +288,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(13);
     expect(msg.nodeType).to.equal('ArrowFunctionExpression');
     expect(msg.source).to.equal('const foo = () => () => 85;');
-    done();
   });
 
-  it('enforces no-shadow rule', (done) => {
+  it('enforces no-shadow rule', () => {
     const output = lintFile('fixtures/no-shadow.js');
     const results = output.results[0];
 
@@ -319,10 +308,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(33);
     expect(msg.nodeType).to.equal('Identifier');
     expect(msg.source).to.equal('        const inner = function (res) {');
-    done();
   });
 
-  it('enforces one-var rule', (done) => {
+  it('enforces one-var rule', () => {
     const output = lintFile('fixtures/one-var.js');
     const results = output.results[0];
 
@@ -340,10 +328,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(1);
     expect(msg.nodeType).to.equal('VariableDeclaration');
     expect(msg.source).to.equal('let baz, quux;');
-    done();
   });
 
-  it('enforces no-undef rule', (done) => {
+  it('enforces no-undef rule', () => {
     lintFile('fixtures/no-undef.js');
     const output = lintFile('fixtures/no-undef.js');
     const results = output.results[0];
@@ -362,10 +349,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(17);
     expect(msg.nodeType).to.equal('Identifier');
     expect(msg.source).to.equal('    const baz = bar;');
-    done();
   });
 
-  it('enforces no-unused-vars', (done) => {
+  it('enforces no-unused-vars', () => {
     const output = lintFile('fixtures/no-unused-vars.js');
     const results = output.results[0];
 
@@ -383,10 +369,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(7);
     expect(msg.nodeType).to.equal('Identifier');
     expect(msg.source).to.equal('const internals2 = {};');
-    done();
   });
 
-  it('enforces prefer-const', (done) => {
+  it('enforces prefer-const', () => {
     const output = lintFile('fixtures/prefer-const.js');
     const results = output.results[0];
 
@@ -404,10 +389,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(5);
     expect(msg.nodeType).to.equal('Identifier');
     expect(msg.source).to.equal('let foo = 1;');
-    done();
   });
 
-  it('enforces hapi/hapi-no-var', (done) => {
+  it('enforces hapi/hapi-no-var', () => {
     const output = lintFile('fixtures/no-var.js');
     const results = output.results[0];
 
@@ -425,10 +409,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(1);
     expect(msg.nodeType).to.equal('VariableDeclaration');
     expect(msg.source).to.equal('var foo = 1;');
-    done();
   });
 
-  it('enforces arrow-parens', (done) => {
+  it('enforces arrow-parens', () => {
     const output = lintFile('fixtures/arrow-parens.js');
     const results = output.results[0];
 
@@ -446,10 +429,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(13);
     expect(msg.nodeType).to.equal('ArrowFunctionExpression');
     expect(msg.source).to.equal('const foo = bar => {');
-    done();
   });
 
-  it('enforces arrow-spacing', (done) => {
+  it('enforces arrow-spacing', () => {
     const output = lintFile('fixtures/arrow-spacing.js');
     const results = output.results[0];
 
@@ -475,10 +457,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(22);
     expect(msg.nodeType).to.equal('Punctuator');
     expect(msg.source).to.equal('const baz = (quux) =>{');
-    done();
   });
 
-  it('enforces object-shorthand', (done) => {
+  it('enforces object-shorthand', () => {
     const output = lintFile('fixtures/object-shorthand.js');
     const results = output.results[0];
 
@@ -496,10 +477,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(5);
     expect(msg.nodeType).to.equal('Property');
     expect(msg.source).to.equal('    b: b,');
-    done();
   });
 
-  it('enforces prefer-arrow-callback', (done) => {
+  it('enforces prefer-arrow-callback', () => {
     const output = lintFile('fixtures/prefer-arrow-callback.js');
     const results = output.results[0];
 
@@ -517,10 +497,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(8);
     expect(msg.nodeType).to.equal('FunctionExpression');
     expect(msg.source).to.equal('foo(4, function (err, value) {');
-    done();
   });
 
-  it('enforces no-constant-condition rule', (done) => {
+  it('enforces no-constant-condition rule', () => {
     const output = lintFile('fixtures/no-constant-condition.js');
     const results = output.results[0];
 
@@ -538,10 +517,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(5);
     expect(msg.nodeType).to.equal('ArrowFunctionExpression');
     expect(msg.source).to.equal('if ((foo) => 1) {');
-    done();
   });
 
-  it('enforces no-unsafe-finally rule', (done) => {
+  it('enforces no-unsafe-finally rule', () => {
     const output = lintFile('fixtures/no-unsafe-finally.js');
     const results = output.results[0];
 
@@ -559,10 +537,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(9);
     expect(msg.nodeType).to.equal('ReturnStatement');
     expect(msg.source).to.equal('        return 3;');
-    done();
   });
 
-  it('enforces no-useless-computed-key rule', (done) => {
+  it('enforces no-useless-computed-key rule', () => {
     const output = lintFile('fixtures/no-useless-computed-key.js');
     const results = output.results[0];
 
@@ -620,10 +597,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(22);
     expect(msg.nodeType).to.equal('Property');
     expect(msg.source).to.equal('module.exports.a = { [\'x\']() {} };');
-    done();
   });
 
-  it('enforces handle-callback-err rule', (done) => {
+  it('enforces handle-callback-err rule', () => {
     const output = lintFile('fixtures/handle-callback-err.js');
     const results = output.results[0];
 
@@ -651,11 +627,9 @@ describe('eslint-config-hapi', () => {
     expect(msg.column).to.equal(23);
     expect(msg.nodeType).to.equal('FunctionExpression');
     expect(msg.source).to.equal('        const inner = function (e) {');
-
-    done();
   });
 
-  it('uses the node environment', (done) => {
+  it('uses the node environment', () => {
     const output = lintFile('fixtures/node-env.js');
     const results = output.results[0];
 
@@ -664,10 +638,9 @@ describe('eslint-config-hapi', () => {
     expect(results.errorCount).to.equal(0);
     expect(results.warningCount).to.equal(0);
     expect(results.messages).to.equal([]);
-    done();
   });
 
-  it('uses the ES6 environment', (done) => {
+  it('uses the ES6 environment', () => {
     const output = lintFile('fixtures/es6-env.js');
     const results = output.results[0];
 
@@ -676,10 +649,9 @@ describe('eslint-config-hapi', () => {
     expect(results.errorCount).to.equal(0);
     expect(results.warningCount).to.equal(0);
     expect(results.messages).to.equal([]);
-    done();
   });
 
-  it('does not enforce the camelcase lint rule', (done) => {
+  it('does not enforce the camelcase lint rule', () => {
     const output = lintFile('fixtures/camelcase.js');
     const results = output.results[0];
 
@@ -688,6 +660,5 @@ describe('eslint-config-hapi', () => {
     expect(results.errorCount).to.equal(0);
     expect(results.warningCount).to.equal(0);
     expect(results.messages).to.equal([]);
-    done();
   });
 });
