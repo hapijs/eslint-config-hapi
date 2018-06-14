@@ -2,15 +2,15 @@
   "name": "eslint-config-hapi",
   "version": "11.1.0",
   "description": "Shareable ESLint config for the hapi ecosystem",
-  "author": "Continuation Labs <contact@continuation.io> (http://continuation.io/)",
+  "author": "Colin J. Ihrig <cjihrig@gmail.com> (http://www.cjihrig.com/)",
   "main": "lib/index.js",
-  "homepage": "https://github.com/continuationlabs/eslint-config-hapi",
+  "homepage": "https://github.com/cjihrig/eslint-config-hapi",
   "repository": {
     "type": "git",
-    "url": "https://github.com/continuationlabs/eslint-config-hapi.git"
+    "url": "https://github.com/cjihrig/eslint-config-hapi.git"
   },
   "bugs": {
-    "url": "https://github.com/continuationlabs/eslint-config-hapi/issues"
+    "url": "https://github.com/cjihrig/eslint-config-hapi/issues"
   },
   "license": "MIT",
   "scripts": {
