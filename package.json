@@ -1,39 +1,23 @@
 {
-  "name": "eslint-config-hapi",
+  "name": "@hapi/eslint-config",
   "version": "12.0.0",
   "description": "Shareable ESLint config for the hapi ecosystem",
-  "author": "Colin J. Ihrig <cjihrig@gmail.com> (http://www.cjihrig.com/)",
   "main": "lib/index.js",
-  "homepage": "https://github.com/cjihrig/eslint-config-hapi",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cjihrig/eslint-config-hapi.git"
-  },
-  "bugs": {
-    "url": "https://github.com/cjihrig/eslint-config-hapi/issues"
-  },
-  "license": "MIT",
-  "scripts": {
-    "lint": "belly-button -I 'node_modules/**' -I  'test/fixtures/**'",
-    "test": "npm run lint && lab -v -t 100 -a code"
-  },
-  "engines": {
-    "node": ">=6.0.0"
+  "repository": "https://github.com/hapijs/eslint-config.git",
+  "keywords": ["hapi", "lint", "eslint", "eslintconfig"],
+  "dependencies": {
   },
   "peerDependencies": {
-    "eslint-plugin-hapi": "4.x.x"
+    "@hapi/eslint-plugin-hapi": "4.x.x"
   },
   "devDependencies": {
-    "belly-button": "4.x.x",
-    "code": "5.x.x",
-    "eslint": "4.x.x",
-    "eslint-plugin-hapi": "4.x.x",
-    "lab": "15.x.x"
+    "@hapi/code": "5.x.x",
+    "@hapi/eslint-plugin-hapi": "4.x.x",
+    "@hapi/lab": "18.x.x",
+    "eslint": "5.x.x"
   },
-  "keywords": [
-    "hapi",
-    "lint",
-    "eslint",
-    "eslintconfig"
-  ]
+  "scripts": {
+    "test": "lab -a @hapi/code -t 100 -L"
+  },
+  "license": "BSD-3-Clause"
 }
