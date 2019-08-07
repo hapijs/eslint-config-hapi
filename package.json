@@ -15,10 +15,10 @@
     "@hapi/eslint-plugin-hapi": "4.x.x"
   },
   "devDependencies": {
-    "@hapi/code": "5.x.x",
+    "@hapi/code": "6.x.x",
     "@hapi/eslint-plugin-hapi": "4.x.x",
-    "@hapi/lab": "18.x.x",
-    "eslint": "5.x.x"
+    "@hapi/lab": "20.x.x",
+    "eslint": "6.x.x"
   },
   "scripts": {
     "test": "lab -a @hapi/code -t 100 -L"
