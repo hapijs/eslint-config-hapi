@@ -169,6 +169,26 @@ describe('eslint-config', () => {
         expect(msg.nodeType).to.equal('ReturnStatement');
     });
 
+    it('enforces semicolon usage', () => {
+
+        const output = internals.lintFile('fixtures/no-extra-semi.js');
+        const results = output.results[0];
+
+        expect(output.errorCount).to.equal(1);
+        expect(output.warningCount).to.equal(0);
+        expect(results.errorCount).to.equal(1);
+        expect(results.warningCount).to.equal(0);
+
+        const msg = results.messages[0];
+
+        expect(msg.ruleId).to.equal('no-extra-semi');
+        expect(msg.severity).to.equal(2);
+        expect(msg.message).to.equal('Unnecessary semicolon.');
+        expect(msg.line).to.equal(10);
+        expect(msg.column).to.equal(6);
+        expect(msg.nodeType).to.equal('EmptyStatement');
+    });
+
     it('enforces space-before-function-paren', () => {
 
         const output = internals.lintFile('fixtures/space-before-function-paren.js');
