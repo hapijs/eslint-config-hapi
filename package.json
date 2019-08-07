@@ -1,6 +1,6 @@
 {
   "name": "@hapi/eslint-config-hapi",
-  "version": "12.1.0",
+  "version": "12.1.1",
   "description": "Shareable ESLint config for the hapi ecosystem",
   "main": "lib/index.js",
   "repository": "https://github.com/hapijs/eslint-config-hapi.git",
