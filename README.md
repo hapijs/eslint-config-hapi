@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.org/hapijs/eslint-config-hapi.svg?branch=master)](https://travis-ci.org/hapijs/eslint-config-hapi)
 
-Shareable ESLint config for the hapi ecosystem. To use in your project, add `@hapi/eslint-config` and [`@hapi/eslint-plugin-hapi`](https://github.com/hapijs/eslint-plugin-hapi) to your `package.json`, then in your ESLint configuration add:
+Shareable ESLint config for the hapi ecosystem. To use in your project, add `@hapi/eslint-config-hapi` and [`@hapi/eslint-plugin-hapi`](https://github.com/hapijs/eslint-plugin-hapi) to your `package.json`, then in your ESLint configuration add:
 
 ```
 {
