@@ -1,6 +1,6 @@
 <a href="http://hapijs.com"><img src="https://raw.githubusercontent.com/hapijs/assets/master/images/family.png" width="180px" align="right" /></a>
 
-# eslint-config-hapi
+# @hapi/eslint-config-hapi
 
 [![Build Status](https://travis-ci.org/hapijs/eslint-config-hapi.svg?branch=master)](https://travis-ci.org/hapijs/eslint-config-hapi)
 
