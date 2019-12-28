@@ -694,4 +694,15 @@ describe('eslint-config', () => {
         expect(results.warningCount).to.equal(0);
         expect(results.messages).to.equal([]);
     });
+
+    it('enforces key-spacing', () => {
+
+        const output = internals.lintFile('fixtures/key-spacing.js');
+        const results = output.results[0];
+
+        expect(output.errorCount).to.equal(2);
+        expect(output.warningCount).to.equal(0);
+        expect(results.errorCount).to.equal(2);
+        expect(results.warningCount).to.equal(0);
+    });
 });
