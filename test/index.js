@@ -705,4 +705,15 @@ describe('eslint-config', () => {
         expect(results.errorCount).to.equal(2);
         expect(results.warningCount).to.equal(0);
     });
+
+    it('enforces space-before-blocks', () => {
+
+        const output = internals.lintFile('fixtures/space-before-blocks.js');
+        const results = output.results[0];
+
+        expect(output.errorCount).to.equal(2);
+        expect(output.warningCount).to.equal(0);
+        expect(results.errorCount).to.equal(2);
+        expect(results.warningCount).to.equal(0);
+    });
 });
