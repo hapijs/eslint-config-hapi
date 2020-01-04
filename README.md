@@ -13,3 +13,7 @@ Shareable ESLint config for the hapi ecosystem. To use in your project, add `@ha
 ```
 
 **Note:** `@hapi/eslint-plugin-hapi` is a plugin containing custom hapi linting rules. It is a peer dependency because of the way ESLint handles shareable configs that include plugins and custom rules (see [eslint/eslint#3458](https://github.com/eslint/eslint/issues/3458) and [eslint/eslint#2518](https://github.com/eslint/eslint/issues/2518) for more background).
+
+
+## Useful resources
+- [Changelog](https://hapi.dev/family/eslint-config-hapi/changelog/)
