@@ -2,12 +2,16 @@
 
 # @hapi/eslint-config-hapi
 
-Shareable ESLint config for the hapi ecosystem. To use in your project, add `@hapi/eslint-config-hapi` and [`@hapi/eslint-plugin-hapi`](https://github.com/hapijs/eslint-plugin-hapi) to your `package.json`, then in your ESLint configuration add:
+#### Shareable ESLint config for the hapi ecosystem.
 
-```
-{
-  "extends": "@hapi/eslint-config-hapi"
-}
-```
+**eslint-config-hapi** is part of the **hapi** ecosystem and was designed to work seamlessly with the [hapi web framework](https://hapi.dev) and its other components (but works great on its own or with other frameworks). If you are using a different web framework and find this module useful, check out [hapi](https://hapi.dev) – they work even better together.
 
-**Note:** `@hapi/eslint-plugin-hapi` is a plugin containing custom hapi linting rules. It is a peer dependency because of the way ESLint handles shareable configs that include plugins and custom rules (see [eslint/eslint#3458](https://github.com/eslint/eslint/issues/3458) and [eslint/eslint#2518](https://github.com/eslint/eslint/issues/2518) for more background).
+### Visit the [hapi.dev](https://hapi.dev) Developer Portal for tutorials, documentation, and support
+
+## Useful resources
+
+- [Documentation and API](https://hapi.dev/module/eslint-config-hapi/)
+- [Versions status](https://hapi.dev/resources/status/#eslint-config-hapi)
+- [Changelog](https://hapi.dev/family/eslint-config-hapi/changelog/)
+- [Project policies](https://hapi.dev/policies/)
+- [Free and commercial support options](https://hapi.dev/support/)
