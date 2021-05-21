@@ -1,3 +1,7 @@
+# DEPRECATED
+
+This package is now deprecated in favor of [`@hapi/eslint-config`](https://hapi.dev/module/eslint-plugin/). Please migrate to the plugin if you want to use hapi's ESLint configuration.
+
 <a href="http://hapijs.com"><img src="https://raw.githubusercontent.com/hapijs/assets/master/images/family.png" width="180px" align="right" /></a>
 
 # @hapi/eslint-config-hapi
